@@ -1,36 +1,48 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Claire Website
 
-## Getting Started
+Website untuk aplikasi Claire. Hanya frontend: tidak ada database, API, atau penyimpanan data.
+Dibuat dengan Next.js 16 (App Router), TypeScript, dan Tailwind CSS 4.
 
-First, run the development server:
+## Menjalankan
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Buka http://localhost:3000.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Build
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+```
 
-## Learn More
+Hasilnya HTML/CSS/JS statis di folder `out/` (`output: "export"` di `next.config.ts`).
+Folder itu bisa di-upload ke hosting statis mana pun (Vercel, Netlify, GitHub Pages).
 
-To learn more about Next.js, take a look at the following resources:
+## Struktur folder
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+src/
+  app/
+    layout.tsx      font, metadata, <html>
+    page.tsx        halaman utama, menyusun komponen
+    globals.css     warna brand (dari AppColor.swift) + Tailwind
+    icon.png        favicon (bintang Claire)
+    fonts/          Astonpoliz.ttf (font judul)
+  components/       satu komponen per file
+  content/
+    site.ts         semua teks website ada di sini
+public/
+  images/           wordmark dan bintang Claire
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Catatan
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Ganti teks di `src/content/site.ts`, bukan di komponen.
+- Warna: `bg-cream`, `bg-tile`, `bg-accent`, `text-ink`, `text-navy`, `bg-star`, `bg-orange`.
+  Nilainya di `src/app/globals.css`, ikut light/dark mode.
+- Font judul: class `font-display`.
+- Karena static export, fitur yang butuh server tidak bisa dipakai
+  (Server Actions, Route Handlers, cookies, `cacheComponents`).
