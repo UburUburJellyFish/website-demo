@@ -9,7 +9,7 @@
 - **Teks hanya di `src/content/`.** Komponen menerima teks dari sana.
 - **Warna hanya lewat token** di `src/app/globals.css` (lihat `01-design-system.md`).
 - **Server Component** secara default. `"use client"` hanya untuk mesin parallax, header (state menu HP),
-  dan easter egg.
+  easter egg, dan bar bab di `/privacy` (bab aktif lewat IntersectionObserver).
 - **Hanya light mode** (phase 7). Tidak ada `dark:` dan tidak ada `prefers-color-scheme`.
 - Sebelum menulis kode Next.js, baca panduan di `node_modules/next/dist/docs/` (Next 16 berbeda dari versi lama).
 
@@ -92,12 +92,14 @@ claire-website/
         SceneLabel.tsx           label huruf kapital berjarak
         FeelingRow.tsx           ikon perasaan kecil di kartu History
         SkipLink.tsx             link "Skip to ..." pertama untuk keyboard (Home dan /privacy)
-      privacy/
-        PrivacyHero.tsx          pita voice-bottom: judul, intro, chip tanggal
-        PrivacyHighlight.tsx     satu dari 4 kartu ringkasan
-        PrivacyToc.tsx           "On this page" (sticky dari lg)
-        PrivacyPolicy.tsx        kartu isi: pembuka, notice beta, bagian, kontak
-        PrivacySectionBlock.tsx  satu bagian bernomor (paragraf, daftar, link luar)
+      privacy/                   gaya Claire (claymorphism, dirancang dengan skill UI/UX Pro Max)
+        PrivacyHero.tsx          langit bintang (StarField), judul Astonpoliz, maskot + balon
+        PrivacyPromise.tsx       satu dari 4 kartu clay "The short version" (warna deck, sedikit miring di lg)
+        PrivacyChapterNav.tsx    client: bar bab sticky + bar progres baca (CSS scroll timeline)
+        PrivacyChapter.tsx       satu bab: nomor clay, judul, balon Claire, kartu bagian
+        PrivacySectionBlock.tsx  satu bagian bernomor (paragraf, daftar bintang, link luar)
+        PrivacyContact.tsx       kartu kuning terakhir: maskot + tombol email
+        colors.ts                warna bab/kartu (bukan komponen)
         StarField.tsx            satu lapis bintang dekorasi
       sections/
         FeatureSection.tsx

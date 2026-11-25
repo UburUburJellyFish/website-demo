@@ -313,7 +313,7 @@ Singkatan: `y↑` = naik, `op` = opacity, `vh`/`vw` = persen tinggi/lebar layar.
 | 3 | `burden` | 150vh | sama | 16 `tile-1..16` meledak: tiap tile x dan y berbeda (−20vw..+20vw, −17vh..+14vh), scale 1–2, op [1, 0]. Nilainya di tabel bawah |
 | 4 | `burden` | 100vh | sama | `burden-text` y [−25vh, −40vh], op [1, 0]. `relief-text` op [0, 1.5], y 4vh→0 |
 | 5 | `meet` | 100vh | `home-cream`→`home-background` | `relief-text` op 0. `star` scale [0.4, 1], rotate [−30, 0], op [0, 1]. `hello` y [10vh, 0], op [0, 1.5] |
-| 6 | `meet` | 150vh | sama | `phone` y [100vh, 0] (naik dari bawah). `meet-text` y −25vh, op [0, 1.75]. `star` x −32vw, y −30vh, scale 0.45 (pindah ke kiri atas). `hello` op 0 |
+| 6 | `meet` | 150vh | sama | `phone` y [100vh, 0] (naik dari bawah). `meet-text` y −25vh, op [0, 1.75]. `star` y −6vh, scale 1.1, op [1, −1] (memudar setelah menyapa; **tidak lagi pindah ke kiri atas**, permintaan Aaron phase 8). `hello` op [1, −1] |
 | 7 | `meet` | 50vh | | jeda (anchor `story`) |
 | 8 | `log` | 100vh | `home-background`→`voice-top`, tone dark | `meet-text` op 0. `voice-text` op [0, 1.5]. `screen-home` op 0, `screen-voice` op [0, 1]. `voice-glow` scale [0.6, 1.2], op [0, 0.6]. `bubble-voice` y [3vh, 0], op [0, 1] |
 | 9 | `log` | 50vh | | jeda |
@@ -358,7 +358,7 @@ Durasi dan urutan sama. Yang berbeda:
 |---|---|
 | Semua | Teks di atas (top 12–14%), HP di bawah (lebar 62vw, mulai di 42% tinggi). Lebar teks max 90vw |
 | `burden` | Grid 4×4 tile 3.5rem, di bawah teks. Jarak ledakan pakai vw jadi otomatis lebih kecil |
-| `meet` | Bintang pindah ke pojok kiri atas lebih kecil (scale 0.35) |
+| `meet` | Bintang memudar setelah menyapa (sama seperti desktop) |
 | `log` | Bahan makanan (`ingredient-*`) muncul di bawah HP, bukan di samping |
 | `tips` | HP tidak geser ke kanan, tapi turun dan mengecil (scale 0.8). Kartu muncul di atasnya bergantian |
 | `history` | Dinding HP 2 kolom |

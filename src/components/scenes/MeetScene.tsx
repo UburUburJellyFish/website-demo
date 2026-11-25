@@ -6,7 +6,8 @@ import { SceneLabel } from "@/components/ui/SceneLabel";
 import { brand } from "@/content/images";
 import { scenes } from "@/content/scenes";
 
-// Scene 3: Claire's star mascot spins in, says hello, and introduces the Home screen (shared StagePhone when parallax is on).
+// Scene 3: Claire's star mascot spins in and says hello, then fades away as the Home screen phone rises (shared
+// StagePhone when parallax is on).
 export function MeetScene() {
   const { hello, label, text, screen } = scenes.meet;
 

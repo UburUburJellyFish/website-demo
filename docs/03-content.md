@@ -70,14 +70,15 @@ Diambil dari kode app (`View/`, `Service/`, `QuickLogWidget/`) dan naskah video 
 | `burden-text` | Glucose checks. Insulin shots. Meals. Workouts. Writing every one of them down is a lot. |
 | `relief-text` | Claire takes it from here. |
 
-16 tile (warna dari `card-*`, teks `voice-bottom`):
+16 tile, masing-masing seperti entri log: ikon jenis, **nilai** (tebal, satu baris, ≤ 6 karakter) dan **keterangan**
+(kecil, satu baris, ≤ 7 karakter). Revisi phase 8 (tulisan lama ukurannya campur dan sesak):
 
-| Glucose (`card-glucose`) | Insulin (`card-insulin`) | Meal (`card-meal`, teks besar) | Activity (`card-activity`) |
+| Glucose (`card-glucose`) | Insulin (`card-insulin`) | Meal (`card-meal` digelapkan, teks `on-dark`) | Activity (`card-activity`) |
 |---|---|---|---|
-| 180 mg/dL | Rapid 4 u | Nasi goreng | 20 min walk |
-| 95 mg/dL | Basal 10 u | Lunch | Cycling |
-| 62 mg/dL | 12:05 | 45 g carbs | Hard effort |
-| Fasting | Still active? | Snack? | 15:00 |
+| 180 · mg/dL | 4 u · rapid | Lunch · 12:05 | 20 min · walk |
+| 95 · mg/dL | 10 u · basal | 45 g · carbs | 30 min · cycling |
+| 62 · low | 2 h · active? | Snack? · 15:00 | Hard · effort |
+| 110 · fasting | Dose? · 21:00 | 350 · kcal | 15:00 · gym |
 
 Urutan di grid diacak supaya warna tercampur (bukan per kolom).
 
@@ -237,7 +238,18 @@ ingredients. This website doesn't collect any data.
 ### `/privacy` · Privacy Policy (phase 8)
 
 Halaman sendiri untuk **Privacy Policy URL** di App Store Connect. Teks lengkap di `src/content/privacy.ts`.
-Tata letak mengikuti referensi dari Aaron (pita gelap, 4 kartu ringkasan, "On this page" di samping, bagian bernomor).
+Tata letak **gaya Claire, sengaja berbeda dari referensi website teman** (revisi Aaron): hero langit bintang dengan
+maskot dan balon "Hi! Here's how I keep your logbook yours.", "The short version" = 4 kartu clay warna deck, lalu
+14 bagian dalam **4 bab** dengan ringkasan satu kalimat di balon Claire:
+
+| Bab | Warna | Bagian |
+|---|---|---|
+| 1 What stays on your iPhone | `card-glucose` | 1 Information we collect, 2 Data stored on your iPhone, 3 Apple Health, 4 Bluetooth glucometer, 5 Tips, insights and reminders |
+| 2 What leaves your iPhone | `card-insulin` | 6 Meal analysis with Google Gemini, 7 Voice log |
+| 3 Your choices | `card-activity` | 8 Permissions, 9 Keeping and deleting your data |
+| 4 The fine print | `home-star` | 10 Data sharing, 11 Analytics, tracking and ads, 12 This website, 13 Changes to this policy, 14 Contact us |
+
+Rujukan di teks memakai nomor baru ("section 6" = Gemini).
 
 Isi berasal dari audit kode app (2026-11-25, repo app hanya dibaca):
 

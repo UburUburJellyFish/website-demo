@@ -91,14 +91,15 @@ export const buildTimeline: BuildTimeline = ({ isMobile }) => [
     ],
   },
 
-  // Keyframe 6: meet — Claire settles into the top-left, Home screen phone rises, meet text arrives.
+  // Keyframe 6: meet — Claire says goodbye (she fades out where she greeted, gone by halfway, instead of parking in the
+  // top-left corner: Aaron's call), the Home screen phone rises and the meet text arrives.
   {
     scene: "meet",
     duration: "150vh",
     animations: [
       { target: "phone", x: isMobile ? [0, 0] : ["20vw", "20vw"], y: ["100vh", 0], opacity: [0, 1.5] },
       { target: "meet-text", y: isMobile ? "-15vh" : "-25vh", opacity: [0, 1.75] },
-      { target: "star", x: isMobile ? "-35vw" : "-32vw", y: "-30vh", scale: isMobile ? 0.35 : 0.45 },
+      { target: "star", y: "-6vh", scale: 1.1, opacity: [1, -1] },
       // Gone by halfway, before the rising phone reaches the line (nothing may cover the Apple bezel).
       { target: "hello", opacity: [1, -1] },
     ],
@@ -114,14 +115,11 @@ export const buildTimeline: BuildTimeline = ({ isMobile }) => [
 
   // ── Phase 4: scene `log` (docs keyframes 8–14). The phone stays where `meet` left it. ──
 
-  // Meet leaves: its text and Claire fade out while the scene is still `meet` (a scene switch hides it at once).
+  // Meet leaves: its text fades out while the scene is still `meet` (a scene switch hides it at once).
   {
     scene: "meet",
     duration: "60vh",
-    animations: [
-      { target: "meet-text", y: isMobile ? "-19vh" : "-29vh", opacity: 0 },
-      { target: "star", opacity: 0 },
-    ],
+    animations: [{ target: "meet-text", y: isMobile ? "-19vh" : "-29vh", opacity: 0 }],
   },
 
   // Keyframe 8: voice log. The stage turns voice-top with a light text tone; the voice screen and its glow come in.

@@ -166,7 +166,7 @@ Ringkasnya:
 | Tombol utama | latar `home-star`, teks `voice-bottom`, `rounded-full`, padding `0.875rem 1.5rem`, semibold |
 | Tombol kedua | garis `1px navy` 50%, teks `navy`, latar transparan |
 | Kartu fitur | latar `home-tile`, radius 3xl, ikon dalam lingkaran `home-accent` |
-| Chip log (scene Burden) | latar warna kartu voice log (`card-*`), teks `voice-bottom`, radius 1rem |
+| Tile log (scene Burden) | latar warna kartu voice log (`card-*`), teks `voice-bottom`, radius 1rem. Isi: ikon (lucide, sama dengan DeckIcon) di kiri atas, nilai tebal 15px (18px dari xl) dan keterangan 12px di bawah, rata kiri, tidak pernah pecah baris. Tile meal: `card-meal` dicampur 35% `voice-bottom`, teks `on-dark` (5,46:1; `card-meal` biasa hanya 3,73). Ukuran tile 4.25 / 4.5 / 5 / 5.5rem (base / md / lg / xl). Bayangan dalam tipis di bawah |
 | Balon Claire | latar `home-card`, teks `home-ink`, ekor kecil, bayangan `--shadow` |
 | Bingkai HP | **Bezel iPhone resmi Apple** (`public/images/device/iphone-bezel.webp`, dari Aaron, phase 7) di atas screenshot. Layar = area transparan bezel (874×1900 di (52, 50) dalam gambar 978×2000). Aturan Apple "Apple Product Images" dipatuhi sebisanya (pilihan Aaron): **tanpa bayangan, tidak dimiringkan/diputar/dipotong, tidak ada yang menimpa bezel** (balon, chip, kartu, teks di samping). HP masih bergeser dan memudar ikut scroll (abu-abu menurut kata "animating"). Lihat `ui/PhoneFrame.tsx` |
 | Ikon | SVG buatan sendiri atau `lucide-react` (lisensi ISC). **Jangan** SF Symbols (lisensi Apple) |
@@ -174,6 +174,8 @@ Ringkasnya:
 | Menu HP | `<details>` (jalan tanpa JavaScript), panel `home-cream` 95% di bawah header, link besar (`type-body-l`) |
 | Kartu prinsip (About) | latar `home-card`, `shadow-card`, bintang kecil `home-star` |
 | Footer | latar `home-tile`, garis atas `frame-line`, semua teks `home-ink` / `navy` |
+| Kartu clay (`/privacy`) | `shadow-clay` (utility di `globals.css`): bayangan luar `--shadow` + bayangan dalam bawah `voice-bottom` 7% + kilap dalam atas `home-card` 60%. Kartu berwarna diberi bingkai putih tebal `border-3 border-home-card`. Dari rekomendasi skill UI/UX Pro Max (Claymorphism), warna tetap AppColor |
+| Bar bab (`/privacy`) | sticky di bawah header, chip `home-tile`/`navy`; chip aktif diisi warna bab dengan teks `voice-bottom`; bar progres `home-star` 4px |
 
 ## Latar panggung parallax
 

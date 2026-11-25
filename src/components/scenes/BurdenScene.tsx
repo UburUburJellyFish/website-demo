@@ -18,7 +18,8 @@ export function BurdenScene() {
         className="max-w-sm md:max-w-[18rem] lg:max-w-[24rem] px:absolute px:top-[63%] px:left-[8%] lg:px:left-[10%] max-md:px:inset-x-6 max-md:px:top-[28%] max-md:px:max-w-[90vw]"
       >
         <SceneLabel>{label}</SceneLabel>
-        <p className="type-body-l mt-3">{text}</p>
+        {/* text-pretty: no single word left alone on the last line. */}
+        <p className="type-body-l mt-3 text-pretty">{text}</p>
       </div>
 
       <div
@@ -27,13 +28,13 @@ export function BurdenScene() {
         // Centered on mobile with negative margin (half of 4×4.25rem + 3×0.5rem): the parallax engine owns transform.
       >
         {tiles.map((tile, i) => (
-          <LogTile key={tile.text} kind={tile.kind} text={tile.text} target={`tile-${i + 1}`} />
+          <LogTile key={`${tile.value}-${tile.caption}`} {...tile} target={`tile-${i + 1}`} />
         ))}
       </div>
 
       <p
         data-px="relief-text"
-        className="type-display-l mt-4 text-center text-navy md:col-span-2 px:mt-0 px:absolute px:inset-x-6 px:top-[44%]"
+        className="type-display-l mt-4 text-center text-balance text-navy md:col-span-2 px:mt-0 px:absolute px:inset-x-6 px:top-[44%]"
       >
         {relief}
       </p>

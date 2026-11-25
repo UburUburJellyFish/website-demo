@@ -1,30 +1,40 @@
-import { ExternalLink } from "lucide-react";
-import type { PrivacyBlock } from "@/content/privacy";
+import { ExternalLink, Star } from "lucide-react";
+import { PRIVACY_BG } from "@/components/privacy/colors";
+import type { PrivacyBlock, PrivacyColor } from "@/content/privacy";
 
 type PrivacySectionBlockProps = {
   number: number;
   id: string;
   title: string;
+  color: PrivacyColor;
   blocks: readonly PrivacyBlock[];
 };
 
-// One numbered section of the policy: a heading (the target of the "On this page" link, clear of the fixed header)
-// and its paragraphs, bullet lists and outside links.
-export function PrivacySectionBlock({ number, id, title, blocks }: PrivacySectionBlockProps) {
+// One numbered section of the policy on a soft clay card: a number badge in the chapter's color, the heading (a deep
+// link target, clear of the header and the chapter bar), then paragraphs, star-bulleted lists and outside links.
+// Text is kept to a readable line length (max-w-prose, UI/UX Pro Max: 65–75 characters).
+export function PrivacySectionBlock({ number, id, title, color, blocks }: PrivacySectionBlockProps) {
   return (
-    <section aria-labelledby={id} className="border-t border-frame-line pt-10">
-      <h2 id={id} className="type-body-l scroll-mt-24 text-[1.375rem] font-semibold text-voice-bottom md:text-2xl">
-        <span className="mr-2 text-navy">{number}.</span>
-        {title}
-      </h2>
-      <div className="type-body mt-4 flex flex-col gap-4">
+    <section aria-labelledby={id} className="rounded-3xl bg-home-card p-6 text-home-ink shadow-clay md:p-8">
+      <h3 id={id} className="flex scroll-mt-40 items-start gap-3 text-xl leading-snug font-semibold text-voice-bottom">
+        <span
+          className={`flex size-8 shrink-0 items-center justify-center rounded-full text-sm tabular-nums ${PRIVACY_BG[color]}`}
+        >
+          {number}
+        </span>
+        <span className="pt-0.5">{title}</span>
+      </h3>
+      <div className="type-body mt-4 flex max-w-prose flex-col gap-4">
         {blocks.map((block, i) => {
           if (typeof block === "string") return <p key={i}>{block}</p>;
           if ("list" in block) {
             return (
-              <ul key={i} className="flex list-disc flex-col gap-2 pl-6 marker:text-navy">
+              <ul key={i} className="flex flex-col gap-2.5">
                 {block.list.map((item) => (
-                  <li key={item}>{item}</li>
+                  <li key={item} className="flex gap-3">
+                    <Star aria-hidden className="mt-1 size-4 shrink-0 fill-home-star text-home-star" />
+                    <span>{item}</span>
+                  </li>
                 ))}
               </ul>
             );

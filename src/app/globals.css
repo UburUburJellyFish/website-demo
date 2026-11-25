@@ -158,6 +158,15 @@
   line-height: 1.6;
 }
 
+/* Claymorphism (privacy page, from the UI/UX Pro Max skill): a soft outer shadow plus an inner shade at the bottom
+   and an inner light at the top, so cards look soft and a little puffy. AppColor-based only. */
+@utility shadow-clay {
+  box-shadow:
+    0 14px 30px var(--shadow),
+    inset 0 -5px 0 color-mix(in srgb, var(--voice-bottom) 7%, transparent),
+    inset 0 3px 0 color-mix(in srgb, var(--home-card) 60%, transparent);
+}
+
 @utility type-small {
   font-family: var(--font-sans);
   font-size: 0.875rem;
@@ -177,6 +186,30 @@ body {
 
 html[data-tone="dark"] [data-px-viewport] :focus-visible {
   outline-color: var(--on-dark);
+}
+
+/* Reading progress bar under the privacy page's chapter bar: grows with the page scroll. CSS only (scroll-driven
+   animation); browsers without it don't show the bar. */
+@keyframes reading-progress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.reading-progress {
+  display: none;
+}
+
+@supports (animation-timeline: scroll()) {
+  .reading-progress {
+    display: block;
+    transform-origin: left;
+    animation: reading-progress linear both;
+    animation-timeline: scroll(root block);
+  }
 }
 
 /*

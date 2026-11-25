@@ -5,7 +5,8 @@ import type { ScreenId } from "@/content/screens";
 
 export type LogKind = "glucose" | "insulin" | "meal" | "activity";
 
-export type LogTileContent = { kind: LogKind; text: string };
+/** One tile in the Burden grid: a short value (one line) and a small caption (one line), like a log entry. */
+export type LogTileContent = { kind: LogKind; value: string; caption: string };
 
 export const scenes = {
   intro: {
@@ -19,26 +20,27 @@ export const scenes = {
     text: "Glucose checks. Insulin shots. Meals. Workouts. Writing every one of them down is a lot.",
     relief: "Claire takes it from here.",
     // 4×4 grid, row by row. Each row and column holds one of each kind, so the colors mix.
+    // Values stay short (≤ 6 characters) and captions ≤ 7, so every tile keeps one size and nothing wraps.
     tiles: [
-      { kind: "glucose", text: "180 mg/dL" },
-      { kind: "insulin", text: "Rapid 4 u" },
-      { kind: "meal", text: "Nasi goreng" },
-      { kind: "activity", text: "20 min walk" },
+      { kind: "glucose", value: "180", caption: "mg/dL" },
+      { kind: "insulin", value: "4 u", caption: "rapid" },
+      { kind: "meal", value: "Lunch", caption: "12:05" },
+      { kind: "activity", value: "20 min", caption: "walk" },
 
-      { kind: "activity", text: "Cycling" },
-      { kind: "glucose", text: "95 mg/dL" },
-      { kind: "insulin", text: "Basal 10 u" },
-      { kind: "meal", text: "Lunch" },
+      { kind: "activity", value: "30 min", caption: "cycling" },
+      { kind: "glucose", value: "95", caption: "mg/dL" },
+      { kind: "insulin", value: "10 u", caption: "basal" },
+      { kind: "meal", value: "45 g", caption: "carbs" },
 
-      { kind: "meal", text: "45 g carbs" },
-      { kind: "activity", text: "Hard effort" },
-      { kind: "glucose", text: "62 mg/dL" },
-      { kind: "insulin", text: "12:05" },
+      { kind: "meal", value: "Snack?", caption: "15:00" },
+      { kind: "activity", value: "Hard", caption: "effort" },
+      { kind: "glucose", value: "62", caption: "low" },
+      { kind: "insulin", value: "2 h", caption: "active?" },
 
-      { kind: "insulin", text: "Still active?" },
-      { kind: "meal", text: "Snack?" },
-      { kind: "activity", text: "15:00" },
-      { kind: "glucose", text: "Fasting" },
+      { kind: "insulin", value: "Dose?", caption: "21:00" },
+      { kind: "meal", value: "350", caption: "kcal" },
+      { kind: "activity", value: "15:00", caption: "gym" },
+      { kind: "glucose", value: "110", caption: "fasting" },
     ] satisfies LogTileContent[],
   },
 
