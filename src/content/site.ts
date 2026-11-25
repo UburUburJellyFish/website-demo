@@ -14,14 +14,18 @@ export const site = {
   description:
     "Claire is a cheerful little logbook for type 1 diabetes. Log glucose, insulin, meals and activity by tapping, talking or snapping a photo.",
 
-  // The website's address, once hosting and the domain are decided (docs/03-content.md, "Perlu konfirmasi").
-  // While it is null: link previews use a relative image URL, the sitemap is empty and robots.txt has no Sitemap line.
-  url: null as string | null,
+  // The live website (Vercel, deployed by Aaron on 2026-11-25). Used for metadataBase (absolute link preview images),
+  // sitemap.xml and the Sitemap line in robots.txt. Change it here if the site moves to its own domain.
+  url: "https://claire-peach.vercel.app" as string | null,
 
   // Public TestFlight link, read from the QR codes in C5-M01-UburUbur/QR-TestFlight (the QR on the site opens
   // the same link). Confirmed by Aaron on 2026-11-25.
   // Set to null to send "Join the beta" to the #beta section instead.
   testflightUrl: "https://testflight.apple.com/join/utWcPjDc" as string | null,
+
+  // Alt text of the link preview image. Same words as src/app/opengraph-image.alt.txt (Next reads that file for the
+  // home page; pages with their own openGraph metadata pass this, see src/app/privacy/page.tsx).
+  ogImageAlt: "Claire, live beyond diabetes: a cheerful little logbook for type 1 diabetes.",
 
   nav: [
     { label: "Story", href: "#story" },

@@ -276,7 +276,7 @@ memakai data, dan jawaban label **App Privacy** di App Store Connect), dan apaka
 | Hal | Kenapa | Siapa |
 |---|---|---|
 | Versi iOS minimum | Project berisi target iOS 26.0 | Aaron |
-| Domain website | Isi `site.url` di `src/content/site.ts`. Sebelum diisi: `og:image` menunjuk ke `localhost:3000` (Next memberi peringatan saat build), `sitemap.xml` kosong, `robots.txt` tanpa baris Sitemap. **Wajib sebelum rilis (phase 8)** | Aaron |
+| Domain website | **Sudah:** `https://claire-peach.vercel.app` (Vercel, 2026-11-25) di `site.url`. Ganti di sana kalau pindah ke domain sendiri | Aaron |
 | Video promo | Phase 7 selesai tanpa video. Mau dipasang di bawah About atau tidak (`05-assets.md`) | Aaron |
 | Kalimat privasi | Harus benar. App memakai penyimpanan lokal dan mengirim foto makanan ke Gemini. Halaman `/privacy` sudah ditulis dari audit kode (phase 8); kalimat pendek di About masih disembunyikan | Tim |
 | Paket Gemini API | Gratis atau berbayar: memengaruhi isi label App Privacy di App Store Connect | Tim |

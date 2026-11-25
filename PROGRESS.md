@@ -21,15 +21,14 @@
 |---|---|
 | **Tanggal update** | 2026-11-25 |
 | **Diupdate oleh** | Claude (Opus 5.5) |
-| **Tahap** | **Phase 0–7 selesai.** Phase 8 sedang dikerjakan |
-| **Sedang dikerjakan** | – (tidak ada). Phase 8 menunggu Aaron: izin commit/push, lalu import repo di Vercel |
-| **Terakhir selesai** | Phase 8 · maskot bintang di pojok kiri atas scene meet dihapus: bintang tetap muncul menyapa ("Hi! I'm Claire."), lalu memudar saat HP naik. Sebelumnya: revisi tile Burden dan `/privacy` |
-| **Langkah berikutnya** | (1) Aaron import repo `UburUburJellyFish/website-demo` di vercel.com (langkah di `README.md`). (2) Isi `site.url` dengan URL Vercel, push lagi. (3) Cek URL live di iPhone (Safari) + laptop, Lighthouse live, centang phase 8 |
+| **Tahap** | **Phase 0–7 selesai. Website live** di https://claire-peach.vercel.app. Phase 8 tinggal cek di iPhone (Safari) |
+| **Sedang dikerjakan** | – (tidak ada) |
+| **Terakhir selesai** | Phase 8 · website di-deploy Aaron ke Vercel (https://claire-peach.vercel.app). `site.url` diisi (sitemap, robots, `metadataBase`), `/privacy` dapat gambar pratinjau dan kartu besar lagi. Lighthouse live 100/100/100/100 (Home dan `/privacy`, mobile dan desktop). **Perubahan ini belum di-commit/push** |
+| **Langkah berikutnya** | (1) Commit + push perubahan `site.url` dan metadata `/privacy` supaya Vercel men-deploy ulang. (2) Aaron membuka https://claire-peach.vercel.app di iPhone (Safari), cek scroll cerita dan address bar. (3) Isi Privacy Policy URL di App Store Connect: `https://claire-peach.vercel.app/privacy`. (4) Support URL masih belum ada (opsional: halaman `/support`) |
 | **Build terakhir** | `npm run lint`, `tsc --noEmit`, `npm run build` lolos (2 halaman: `/`, `/privacy`; peringatan `metadataBase` sampai `site.url` diisi). Diuji di `scripts/test/gzip-server.mjs` port 4174 |
 
 ### Belum beres
 
-- **`site.url` masih `null`:** `og:image`/`twitter:image` menunjuk ke `http://localhost:3000/...` dan `sitemap.xml` kosong sampai domain diisi. Wajib sebelum rilis.
 - Safari iOS (address bar muncul/hilang) belum diuji di perangkat atau Simulator (Simulator dipakai sesi lain saat phase 7).
 - Video promo: belum diputuskan Aaron, tidak dipasang.
 - Privacy Policy: tim perlu cek paket Gemini API (gratis/berbayar) untuk label App Privacy di App Store Connect, dan apakah app punya tombol hapus semua data. App Store juga butuh **Support URL** (belum ada halaman Support).
@@ -44,9 +43,9 @@
 
 | | |
 |---|---|
-| Branch | `main`, remote `origin` = `git@github.com:UburUburJellyFish/website-demo.git` (dibuat Aaron, baru berisi commit awal) |
+| Branch | `main`, remote `origin` = `git@github.com:UburUburJellyFish/website-demo.git`. Aaron sudah commit + push sampai `7054f3d` (phase 0–8 + revisi) |
 | Commit terakhir | Phase 0–8 sudah di-commit terpisah dan di-push ke `origin/main` |
-| Belum di-commit | – (bersih) |
+| Belum di-commit | `site.url` live, metadata `/privacy` (gambar pratinjau), docs + PROGRESS phase 8 |
 
 ## Cara melanjutkan (untuk AI mana pun)
 
@@ -98,7 +97,8 @@ npm run dev
 | 2026-11-25 | Website hanya light mode (dark mode dihapus) | Aaron |
 | 2026-11-25 | Hosting: Vercel (Aaron sendiri yang login dan import repo `UburUburJellyFish/website-demo`) | Aaron |
 | 2026-11-25 | Kontak di Privacy Policy: email Aaron (ditampilkan publik) | Aaron |
-| 2026-11-25 | Belum commit/push di phase 8 | Aaron |
+| 2026-11-25 | Belum commit/push di phase 8 (kemudian Aaron sendiri yang commit + push) | Aaron |
+| 2026-11-25 | URL live: https://claire-peach.vercel.app (project Vercel `claire`, akun Hobby Aaron) | Aaron |
 | 2026-11-25 | Bingkai HP = bezel iPhone resmi Apple, aturan "Apple Product Images" dipatuhi sebisanya (tanpa bayangan, miring, putar; tidak ada yang menimpa HP; HP tetap bergeser/memudar ikut scroll) | Aaron |
 
 ## Masih menunggu jawaban
@@ -146,6 +146,8 @@ menyebut Accu-Chek Guide atau tidak, hosting dan domain.
 - Ref React (`refs.stage.current`) sudah `null` sesaat sebelum cleanup effect jalan (unmount/Fast Refresh). Kode yang jalan dari rAF/timer harus mengecek null (dulu memunculkan "1 Issue" di dev overlay).
 - Skill **UI/UX Pro Max** ada di `~/.claude/skills/` (7 skill). Pakai skripnya dengan `python3 -I ~/.claude/skills/ui-ux-pro-max/scripts/search.py "<query>" --design-system` atau `--domain ux`. Warna dan font dari skill **jangan** dipakai: website wajib AppColor + Astonpoliz/Geist. Skrip lain di skill itu (logo, shadcn, fetch-background) memakai jaringan/subprocess: jangan dijalankan tanpa alasan.
 - `/privacy`: anchor bab/bagian butuh `scroll-mt-40` (header 64px + bar bab ±72px). Kalau tinggi bar bab berubah, sesuaikan.
+- Halaman dengan `openGraph`/`twitter` sendiri di `metadata` menimpa milik layout (termasuk gambar): ulangi `images`, `type`, `siteName`, `card` (lihat `src/app/privacy/page.tsx`).
+- Uji klik link lewat skrip (`a.click()` beruntun) bisa terlihat "telat satu langkah" karena smooth scroll belum selesai; pakai klik sungguhan + tunggu beberapa detik sebelum menyimpulkan ada bug.
 - Port 3000 mungkin masih dipakai dev server dari sesi lain. Matikan dulu atau pakai `npm run dev -- --port 3001`.
 
 ## Log
@@ -154,6 +156,7 @@ Entri terbaru di atas. Format: `tanggal · AI · phase · apa yang dikerjakan ·
 
 - 2026-11-25 · Gemini · Phase 8 · Commit seluruh pekerjaan Phase 0–8 secara terpisah per phase dan push ke `origin/main` (`UburUburJellyFish/website-demo`) · selesai
 
+- 2026-11-25 · Claude · Phase 8 · **Website live** (deploy oleh Aaron): https://claire-peach.vercel.app. Dicek: `/`, `/privacy`, `robots.txt`, `sitemap.xml`, OG image, bezel, QR = 200, 404 benar, Brotli aktif; klik sungguhan Story/Join the beta/Features/About tepat; `/privacy` 375×812 tanpa scroll horizontal; console bersih; Lighthouse live 100/100/100/100 untuk Home dan `/privacy` (mobile LCP 1,5 s / 1,0 s). `site.url` diisi → sitemap 2 URL, robots dengan Sitemap, tanpa peringatan `metadataBase`. Ketemu dan diperbaiki: `/privacy` kehilangan `og:image` dan `twitter:card summary_large_image` karena metadata halaman menimpa layout. README/docs diperbarui. Belum: commit/push, uji iPhone Safari
 - 2026-11-25 · Claude · Phase 8 · Maskot di pojok kiri atas scene meet dihapus (permintaan Aaron): keyframe 6 `star` sekarang y −6vh, scale 1.1, opacity [1, −1] (hilang di tengah keyframe), animasi `star` di keyframe meet keluar dihapus. Diuji: `#story` 1280×800 dan 375×812 tanpa bintang di pojok, sapaan tetap tampil, scan bezel bersih (tidak ada yang menimpa HP)
 - 2026-11-25 · Claude · Phase 8 · **Revisi tile Burden selesai.** `LogTileContent` = `{ kind, value, caption }`, 16 tile baru (`scenes.ts`), `ui/LogTile` ditulis ulang (ikon lucide, nilai 15px / 18px dari xl, keterangan 12px, rata kiri, `whitespace-nowrap`, tile meal `color-mix(card-meal 65%, voice-bottom)` + `on-dark`), ukuran tile naik di lg (5rem) dan xl (5.5rem), `text-pretty`/`text-balance` di teks Burden. Diuji: tidak ada tile meluber di 320/375/768/1024/1280/1920, grid tidak menabrak teks (1024: teks s/d 486px, grid dari 514px; 768: 349 / 383), Lighthouse Home mobile 96 / desktop 100, a11y 100, kontras 1
 - 2026-11-25 · Claude · Phase 8 · Aaron: desain `/privacy` sudah oke. Revisi berikut: tulisan tile Burden. Skill UI/UX Pro Max: skala huruf konsisten, label kecil tidak boleh pecah baris, minimal 12px

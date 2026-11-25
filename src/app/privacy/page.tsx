@@ -9,12 +9,30 @@ import { PrivacyHero } from "@/components/privacy/PrivacyHero";
 import { PrivacyPromise } from "@/components/privacy/PrivacyPromise";
 import { SkipLink } from "@/components/ui/SkipLink";
 import { privacy } from "@/content/privacy";
+import { site } from "@/content/site";
+
+// Next merges metadata shallowly: setting openGraph/twitter here replaces the layout's, image included. So the same
+// preview image (src/app/opengraph-image.png, 1200×630), type and large card are repeated here.
+const previewImage = { url: "/opengraph-image.png", width: 1200, height: 630, alt: site.ogImageAlt };
 
 export const metadata: Metadata = {
   title: privacy.metaTitle,
   description: privacy.metaDescription,
-  openGraph: { title: privacy.metaTitle, description: privacy.metaDescription },
-  twitter: { title: privacy.metaTitle, description: privacy.metaDescription },
+  openGraph: {
+    type: "website",
+    siteName: site.name,
+    locale: "en_US",
+    url: privacy.path,
+    title: privacy.metaTitle,
+    description: privacy.metaDescription,
+    images: [previewImage],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: privacy.metaTitle,
+    description: privacy.metaDescription,
+    images: [previewImage],
+  },
 };
 
 // /privacy: the app's privacy policy (the Privacy Policy URL in App Store Connect). A normal page, no parallax, but in

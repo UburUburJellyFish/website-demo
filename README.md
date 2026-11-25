@@ -4,6 +4,8 @@ Website untuk aplikasi Claire: cerita parallax, semua fitur, About, dan halaman 
 untuk App Store. Hanya frontend: tidak ada database, API, cookie, analytics, atau penyimpanan data.
 Next.js 16 (App Router, static export), TypeScript, Tailwind CSS 4.
 
+**Live: https://claire-peach.vercel.app** (Privacy Policy: https://claire-peach.vercel.app/privacy)
+
 **Rencana lengkap dan phase kerja ada di [`docs/README.md`](docs/README.md). Status terakhir di
 [`PROGRESS.md`](PROGRESS.md).**
 
@@ -39,8 +41,10 @@ Alat uji ada di `scripts/test/` (cara pakai di tiap file).
 
 ## Deploy ke Vercel
 
-Hosting: **Vercel** (keputusan Aaron, 2026-11-25). Repo GitHub: `UburUburJellyFish/website-demo`.
-Vercel mengenali Next.js dan static export sendiri, tidak perlu `vercel.json`.
+Hosting: **Vercel** (keputusan Aaron, 2026-11-25), project `claire` di akun Hobby Aaron, URL
+https://claire-peach.vercel.app. Repo GitHub: `UburUburJellyFish/website-demo`. Vercel mengenali Next.js dan static
+export sendiri, tidak perlu `vercel.json`. Catatan: paket Hobby Vercel tidak mendukung repo **private milik organisasi**;
+kalau deploy dari GitHub ditolak, jadikan repo public atau deploy dari laptop dengan `npx vercel --prod`.
 
 Pertama kali (dilakukan Aaron, butuh login):
 
@@ -59,8 +63,8 @@ URL preview sendiri.
 
 | Kolom | Isi |
 |---|---|
-| Privacy Policy URL | `https://<domain>/privacy` |
-| Marketing URL (opsional) | `https://<domain>/` |
+| Privacy Policy URL | `https://claire-peach.vercel.app/privacy` |
+| Marketing URL (opsional) | `https://claire-peach.vercel.app/` |
 | Support URL | Wajib di App Store Connect dan harus berisi cara menghubungi tim. Website belum punya halaman Support; bisa memakai `/privacy#contact` sementara, atau dibuat halaman `/support` |
 
 Isi halaman privacy berasal dari audit kode app (2026-11-25). Kalau app berubah (data baru, layanan baru),

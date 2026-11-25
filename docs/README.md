@@ -44,7 +44,7 @@ Kerjakan **per phase, berurutan**. Satu phase = satu sesi kerja = satu commit.
 | 5 | [Scene pendamping](phases/phase-5-companion-scenes.md) | Tips, Your dose, History & Insights, Connect, CTA | [x] |
 | 6 | [Bagian biasa](phases/phase-6-sections.md) | Header + nav, Everything in Claire, About, Footer | [x] |
 | 7 | [Polish](phases/phase-7-polish.md) | Responsif, aksesibilitas, performa, SEO, easter egg | [x] |
-| 8 | [Rilis](phases/phase-8-release.md) | Deploy ke hosting statis | [ ] |
+| 8 | [Rilis](phases/phase-8-release.md) | Deploy ke hosting statis: https://claire-peach.vercel.app | [ ] tinggal cek di iPhone (Safari) |
 
 Phase 1 dan 2 tidak saling bergantung, jadi boleh dikerjakan bersamaan. Phase lain berurutan.
 
@@ -56,6 +56,8 @@ Build produksi, Lighthouse 13.6 di Chrome headless, server lokal dengan gzip (se
 |---|---|---|---|---|---|---|---|---|
 | Mobile | 95 | 100 | 100 | 100 | 0,9 s | 2,9 s | 0 ms | 0 |
 | Desktop | 100 | 100 | 100 | 100 | 0,2 s | 0,6 s | 0 ms | 0 |
+| Live mobile (phase 8, Vercel) | 100 | 100 | 100 | 100 | 1,1 s | 1,5 s | 20 ms | 0,001 |
+| Live desktop (phase 8, Vercel) | 100 | 100 | 100 | 100 | 0,3 s | 0,5 s | 0 ms | 0 |
 
 JS halaman: 7 file, 150 KB gzip (sebagian besar React/Next). Mesin parallax ±730 baris TypeScript, tanpa library
 animasi. Server tanpa kompresi (`python3 -m http.server`) memberi skor mobile lebih rendah (±77): itu bukan angka

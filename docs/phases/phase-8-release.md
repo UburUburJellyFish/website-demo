@@ -29,8 +29,8 @@ Website online di hosting statis, dengan semua teks yang sudah dikonfirmasi.
   | Netlify | Sama mudahnya, upload folder `out/` atau sambung GitHub |
   | GitHub Pages | Gratis, butuh `basePath` kalau tidak pakai domain sendiri (cek dokumentasi `basePath`) |
 
-- [ ] Domain (opsional) dan `metadataBase` di `layout.tsx`. (`metadataBase` otomatis dari `site.url`; isi setelah
-      URL Vercel/domain ada.)
+- [x] Domain (opsional) dan `metadataBase` di `layout.tsx`. `site.url` = `https://claire-peach.vercel.app` (tanpa
+      domain sendiri); `metadataBase`, `sitemap.xml` dan baris Sitemap di `robots.txt` ikut dari situ.
 - [x] Buat repo GitHub untuk website (izin Aaron dulu, termasuk nama repo dan public/private). Sudah dibuat Aaron:
       `UburUburJellyFish/website-demo` (baru berisi commit awal). **Commit/push belum diizinkan.**
 - [ ] Cek akhir sebelum deploy:
@@ -40,11 +40,14 @@ Website online di hosting statis, dengan semua teks yang sudah dikonfirmasi.
   - [x] Tidak ada data kesehatan asli di screenshot. (data contoh "Sticky", phase 1)
   - [x] Link "Join the beta" dan QR membuka TestFlight yang benar. (`https://testflight.apple.com/join/utWcPjDc`)
   - [x] Disclaimer dan kalimat merek Apple ada di footer.
-- [ ] Deploy, lalu cek URL live di HP dan laptop.
-- [ ] Tulis URL live dan cara deploy ulang di `README.md`. (Cara deploy sudah ditulis; URL live menyusul.)
+- [x] Deploy, lalu cek URL live di HP dan laptop. Di-deploy Aaron lewat Vercel (2026-11-25). Dicek di Chrome (built-in
+      browser) desktop 1280×800 dan ukuran HP 375×812: semua halaman/file 200, Brotli aktif, link header tepat (klik
+      sungguhan), `/privacy` tanpa scroll horizontal, console bersih. **Belum dicek di iPhone sungguhan (Safari).**
+- [x] Tulis URL live dan cara deploy ulang di `README.md`.
 
 ## Selesai jika
 
 - [ ] Website bisa dibuka dari URL publik di iPhone (Safari) dan laptop (Chrome, Safari).
-- [ ] Lighthouse di URL live sama dengan hasil phase 7.
+- [x] Lighthouse di URL live sama dengan hasil phase 7. Lebih baik: Home dan `/privacy` 100/100/100/100 di mobile dan
+      desktop (Vercel memakai CDN + Brotli).
 - [ ] `docs/README.md`: semua phase dicentang.
