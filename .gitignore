@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# raw frames for scripts/optimize-images.mjs (only the WebP output is committed)
+/assets-src/
