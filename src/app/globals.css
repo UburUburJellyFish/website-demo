@@ -1,39 +1,278 @@
 @import "tailwindcss";
 
-/* Brand colors copied from the iOS app's AppColor.swift. */
-:root {
-  --cream: #fffdf6; /* homeCream */
-  --tile: #eaf4fa; /* homeTile */
-  --accent: #cce6ff; /* homeAccent */
-  --ink: #366799; /* homeInk */
-  --navy: #3f5996; /* navy */
-  --star: #ffd658; /* homeStar */
-  --orange: #f5b36f; /* orange */
-}
+/* px: = only while the parallax engine runs (html.px-on). Without it the scenes are a normal stacked page. */
+@custom-variant px (&:where(.px-on *));
+/* tone-dark: = while the current keyframe has tone "dark" (html[data-tone="dark"]). */
+@custom-variant tone-dark (&:where([data-tone="dark"] *));
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --cream: #181a1f;
-    --tile: #222c38;
-    --accent: #2b4360;
-    --ink: #dfecf7;
-    --navy: #b0c5e8;
-  }
+/*
+ * Colors: every value comes from AppColor.swift in the Claire app
+ * (C5-M01-UburUbur/View/Theme/AppColor.swift). Token name = AppColor name in kebab-case.
+ * No other hex is allowed. Full table and contrast notes: docs/01-design-system.md.
+ * The website is light only (decided by Aaron, 2026-11-25): AppColor's dark values are not used.
+ */
+:root {
+  color-scheme: light;
+
+  /* AppColor colors that have a dark version in the app (the light value is used here) */
+  --navy: #3f5996;
+  --home-background: #edf8ff;
+  --home-card: #ffffff;
+  --home-cream: #fffdf6;
+  --home-tile: #eaf4fa;
+  --home-accent: #cce6ff;
+  --home-ink: #366799;
+  --insight-card-expanded: #c7dded;
+  --insight-card-collapsed: #ddebf6;
+  --insight-card-inner: #d8e9f4;
+  --insight-chart-badge: #ffffff;
+
+  /* Same in light and dark */
+  --home-star: #ffd658;
+  --home-button: #cce6ff;
+  --log-save: #cce6ff;
+  --highlight-chart: #fee08e;
+  --orange: #f5b36f;
+  --glucose-status: #e9e6fd;
+  --last-glucose-status: #e5eef4;
+  --last-insulin-ring: #c7baee;
+  --range-low: #ff8e86;
+  --range-normal: #366799;
+  --range-high: #ffa458;
+  --glucose-deck: #7cb5d5;
+  --activity-deck: #98d7f1;
+  --insulin-deck: #bfa9ef;
+  --insight-segment-unselected: #a1afcc;
+  --insight-chart-dot: #ddebf6;
+  --insight-muted-text: #6f83a8;
+  --voice-top: #3f5996;
+  --voice-bottom: #1f2d57;
+  --voice-glow: #bfa9ef;
+  --card-meal: #608caf;
+  --card-glucose: #7cb5d5;
+  --card-activity: #98d7f1;
+  --card-insulin: #bfa9ef;
+
+  /* Derived with transparency, like the app (AppColor uses .opacity on these) */
+  --home-daily-log-card: color-mix(in srgb, var(--home-accent) 40%, transparent);
+  --log-field: color-mix(in srgb, var(--home-ink) 10%, transparent);
+  --log-chip: color-mix(in srgb, var(--home-ink) 10%, transparent);
+  --log-placeholder: color-mix(in srgb, var(--home-ink) 50%, transparent);
+  --voice-muted: color-mix(in srgb, var(--home-ink) 70%, transparent);
+
+  /* Web only, still from app colors */
+  /* Text on the navy stage (voice-top / voice-bottom): homeCream. A separate token so its role stays clear. */
+  --on-dark: #fffdf6;
+  --frame-line: color-mix(in srgb, var(--navy) 20%, transparent);
+  --shadow: color-mix(in srgb, var(--voice-bottom) 18%, transparent);
+  --text-muted: var(--voice-muted);
 }
 
 @theme inline {
-  --color-cream: var(--cream);
-  --color-tile: var(--tile);
-  --color-accent: var(--accent);
-  --color-ink: var(--ink);
+  /* Turn off Tailwind's own palette (zinc, gray, black, white, ...) so only Claire colors exist. */
+  --color-*: initial;
+
   --color-navy: var(--navy);
-  --color-star: var(--star);
+  --color-home-background: var(--home-background);
+  --color-home-card: var(--home-card);
+  --color-home-cream: var(--home-cream);
+  --color-home-tile: var(--home-tile);
+  --color-home-accent: var(--home-accent);
+  --color-home-ink: var(--home-ink);
+  --color-insight-card-expanded: var(--insight-card-expanded);
+  --color-insight-card-collapsed: var(--insight-card-collapsed);
+  --color-insight-card-inner: var(--insight-card-inner);
+  --color-insight-chart-badge: var(--insight-chart-badge);
+
+  --color-home-star: var(--home-star);
+  --color-home-button: var(--home-button);
+  --color-log-save: var(--log-save);
+  --color-highlight-chart: var(--highlight-chart);
   --color-orange: var(--orange);
+  --color-glucose-status: var(--glucose-status);
+  --color-last-glucose-status: var(--last-glucose-status);
+  --color-last-insulin-ring: var(--last-insulin-ring);
+  --color-range-low: var(--range-low);
+  --color-range-normal: var(--range-normal);
+  --color-range-high: var(--range-high);
+  --color-glucose-deck: var(--glucose-deck);
+  --color-activity-deck: var(--activity-deck);
+  --color-insulin-deck: var(--insulin-deck);
+  --color-insight-segment-unselected: var(--insight-segment-unselected);
+  --color-insight-chart-dot: var(--insight-chart-dot);
+  --color-insight-muted-text: var(--insight-muted-text);
+  --color-voice-top: var(--voice-top);
+  --color-voice-bottom: var(--voice-bottom);
+  --color-voice-glow: var(--voice-glow);
+  --color-card-meal: var(--card-meal);
+  --color-card-glucose: var(--card-glucose);
+  --color-card-activity: var(--card-activity);
+  --color-card-insulin: var(--card-insulin);
+
+  --color-home-daily-log-card: var(--home-daily-log-card);
+  --color-log-field: var(--log-field);
+  --color-log-chip: var(--log-chip);
+  --color-log-placeholder: var(--log-placeholder);
+  --color-voice-muted: var(--voice-muted);
+  --color-frame-line: var(--frame-line);
+  --color-on-dark: var(--on-dark);
+  --color-text-muted: var(--text-muted);
+
+  --shadow-card: 0 12px 32px var(--shadow);
+
   --font-sans: var(--font-geist-sans);
   --font-display: var(--font-astonpoliz);
 }
 
+/* Text styles (docs/01-design-system.md, Tipografi). rem + clamp so they follow the user's text size. */
+@utility type-display-xl {
+  font-family: var(--font-display);
+  font-size: clamp(2.75rem, 7vw, 5.5rem);
+  line-height: 1.05;
+}
+
+@utility type-display-l {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4.5vw, 3.5rem);
+  line-height: 1.1;
+}
+
+@utility type-label {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
+
+@utility type-body-l {
+  font-family: var(--font-sans);
+  font-size: clamp(1.0625rem, 1.4vw, 1.25rem);
+  line-height: 1.6;
+}
+
+@utility type-body {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+@utility type-small {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
 body {
-  background: var(--cream);
-  color: var(--ink);
+  background: var(--home-cream);
+  color: var(--home-ink);
+}
+
+/* Keyboard focus that is always visible: navy, on-dark while the stage is navy. Components may set their own. */
+:focus-visible {
+  outline: 2px solid var(--navy);
+  outline-offset: 2px;
+}
+
+html[data-tone="dark"] [data-px-viewport] :focus-visible {
+  outline-color: var(--on-dark);
+}
+
+/*
+ * Easter egg (components/easter-egg/RainbowStar.tsx): html[data-rainbow] runs the page background through
+ * AppColor.rainbow = hsl(<hue> 100% 77.5%), one round in 8s like the app (24s with reduced motion, also like the app).
+ * Only the page and the stage gradient change; scenes with their own color (navy, yellow) keep it.
+ */
+@keyframes rainbow-background {
+  0% { background-color: hsl(0 100% 77.5%); }
+  8.333% { background-color: hsl(30 100% 77.5%); }
+  16.667% { background-color: hsl(60 100% 77.5%); }
+  25% { background-color: hsl(90 100% 77.5%); }
+  33.333% { background-color: hsl(120 100% 77.5%); }
+  41.667% { background-color: hsl(150 100% 77.5%); }
+  50% { background-color: hsl(180 100% 77.5%); }
+  58.333% { background-color: hsl(210 100% 77.5%); }
+  66.667% { background-color: hsl(240 100% 77.5%); }
+  75% { background-color: hsl(270 100% 77.5%); }
+  83.333% { background-color: hsl(300 100% 77.5%); }
+  91.667% { background-color: hsl(330 100% 77.5%); }
+  100% { background-color: hsl(360 100% 77.5%); }
+}
+
+html[data-rainbow] body,
+html[data-rainbow] [data-stage-gradient] {
+  background-image: none;
+  animation: rainbow-background 8s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-rainbow] body,
+  html[data-rainbow] [data-stage-gradient] {
+    animation-duration: 24s;
+  }
+}
+
+/*
+ * Cards after the story ([data-reveal]) fade in and rise 12px as they enter the screen. CSS only (scroll-driven
+ * animation, not part of the parallax timeline): browsers without it, no JavaScript and reduced motion simply show
+ * the cards, so nothing can stay hidden. A card already on screen (e.g. after a jump to #features) is fully shown.
+ */
+@keyframes reveal {
+  from {
+    opacity: 0;
+    translate: 0 12px;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    [data-reveal] {
+      animation: reveal linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 80%;
+    }
+  }
+}
+
+/*
+ * Parallax stage (docs/02-parallax.md, section 4). html.px-on is set before paint by the script in layout.tsx,
+ * unless the visitor prefers reduced motion. Inactive scenes stay in the accessibility tree (opacity, not display).
+ */
+.px-on [data-scene] {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.px-on [data-scene][data-active] {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.px-on [data-scene][data-active] [data-px] {
+  will-change: transform, opacity;
+}
+
+/* The shared stage phone sits outside the scenes, so no scene hides it. Hidden until the engine writes its first
+   frame (an inline opacity wins over this rule): without it the phone flashed on screen before JavaScript ran. */
+.px-on [data-px="phone"] {
+  opacity: 0;
+}
+
+/* Until the page has loaded (html.px-ready, set by the engine), stage images that are not on screen yet wait:
+   display:none keeps lazy images from loading, so the first screen (the wordmark) gets the bandwidth. They all sit
+   in fixed-size boxes or invisible scenes, so nothing moves when they appear. */
+.px-on:not(.px-ready) [data-scene]:not([data-active]) img,
+.px-on:not(.px-ready) [data-px="phone"] img {
+  display: none;
+}
+
+[data-px-viewport] {
+  transition: color 300ms ease-out;
+}
+
+html[data-tone="dark"] [data-px-viewport] {
+  color: var(--on-dark);
 }
