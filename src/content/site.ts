@@ -35,6 +35,8 @@ export const site = {
   cta: { label: "Join the beta", href: "#beta" },
   // In the footer. The page App Store Connect links to as the app's privacy policy.
   privacyLink: { label: "Privacy Policy", href: "/privacy" },
+  // In the footer. The page App Store Connect links to as the app's Support URL.
+  supportLink: { label: "Support", href: "/support" },
   // Accessible names for the header and footer navigation and the mobile menu button.
   skipLink: "Skip to features",
   navLabel: "Main",

@@ -23,15 +23,16 @@
 | **Diupdate oleh** | Claude (Opus 5.5) |
 | **Tahap** | **Phase 0–7 selesai. Website live** di https://claire-peach.vercel.app. Phase 8 tinggal cek di iPhone (Safari) |
 | **Sedang dikerjakan** | – (tidak ada) |
-| **Terakhir selesai** | Phase 8 · kontak Privacy Policy diganti ke `supportclaires@gmail.com` ("Last updated" jadi November 26, 2026); bar bab `/privacy` langsung menampilkan chip aktif saat halaman dibuka di tengah (mis. `#contact`). **Belum di-commit/push.** Sebelumnya (sudah di-push Aaron, `e98f9d4`): `site.url` live, `og:image` `/privacy` |
-| **Langkah berikutnya** | (1) Commit + push email support baru supaya Vercel men-deploy ulang. (2) Aaron membuka https://claire-peach.vercel.app di iPhone (Safari). (3) App Store Connect: Privacy Policy URL `https://claire-peach.vercel.app/privacy`, Support URL sementara `https://claire-peach.vercel.app/privacy#contact` (atau buat `/support`) |
+| **Terakhir selesai** | Phase 8 · halaman `/support` (email tim di hero, catatan darurat, FAQ 4 topik, kartu kontak), `PageHero` + `pageMetadata()` dipakai bersama `/privacy`, link Support di footer, sitemap 3 URL. Lighthouse `/support` 100 semua. **Belum di-commit/push** (email support baru sudah di-push Aaron di `0ea7dd0`) |
+| **Langkah berikutnya** | (1) Commit + push supaya Vercel men-deploy `/support`. (2) App Store Connect: Support URL `https://claire-peach.vercel.app/support`, Privacy Policy URL `https://claire-peach.vercel.app/privacy`. (3) Aaron cek website di iPhone (Safari) |
 | **Build terakhir** | `npm run lint`, `tsc --noEmit`, `npm run build` lolos (2 halaman: `/`, `/privacy`; peringatan `metadataBase` sampai `site.url` diisi). Diuji di `scripts/test/gzip-server.mjs` port 4174 |
 
 ### Belum beres
 
 - Safari iOS (address bar muncul/hilang) belum diuji di perangkat atau Simulator (Simulator dipakai sesi lain saat phase 7).
 - Video promo: belum diputuskan Aaron, tidak dipasang.
-- Privacy Policy: tim perlu cek paket Gemini API (gratis/berbayar) untuk label App Privacy di App Store Connect, dan apakah app punya tombol hapus semua data. App Store juga butuh **Support URL** (belum ada halaman Support).
+- Privacy Policy: tim perlu cek paket Gemini API (gratis/berbayar) untuk label App Privacy di App Store Connect, dan apakah app punya tombol hapus semua data.
+- Di app (repo iOS, bukan website): teks Profile tentang Apple Health menyebut "UburUbur" dan "C5-M01-UburUbur", padahal nama app di iPhone "Claire" (`ProfileView.swift` baris ±57).
 - Daftar anggota tim dan kalimat privasi di About belum tampil (menunggu konfirmasi tim; isi `members` / `privacy.confirmed` di `src/content/about.ts`).
 - HP masih bergeser dan memudar ikut scroll: menurut aturan Apple ("animating ... the images") ini abu-abu. Aaron memilih "patuhi sebisanya" (2026-11-25). Kalau mau patuh penuh, HP harus diam (hanya layarnya yang berganti).
 - Di 375×600 (tinggi minimum parallax) ada satu tumpang tindih sesaat (opacity 0,34) antara HP dinding dan teks History saat pindah ke Insights.
@@ -45,7 +46,7 @@
 |---|---|
 | Branch | `main`, remote `origin` = `git@github.com:UburUburJellyFish/website-demo.git`. Aaron sudah commit + push sampai `7054f3d` (phase 0–8 + revisi) |
 | Commit terakhir | Phase 0–8 sudah di-commit terpisah dan di-push ke `origin/main` |
-| Belum di-commit | Email support baru + tanggal policy, perbaikan bar bab, docs + PROGRESS (commit terakhir di `origin/main`: `e98f9d4`) |
+| Belum di-commit | `/support` + komponennya, `PageHero`/`pageMetadata`, link footer, sitemap, docs + PROGRESS (commit terakhir di `origin/main`: `0ea7dd0`) |
 
 ## Cara melanjutkan (untuk AI mana pun)
 
@@ -149,6 +150,8 @@ menyebut Accu-Chek Guide atau tidak, hosting dan domain.
 - `/privacy`: anchor bab/bagian butuh `scroll-mt-40` (header 64px + bar bab ±72px). Kalau tinggi bar bab berubah, sesuaikan.
 - Halaman dengan `openGraph`/`twitter` sendiri di `metadata` menimpa milik layout (termasuk gambar): ulangi `images`, `type`, `siteName`, `card` (lihat `src/app/privacy/page.tsx`).
 - Uji klik link lewat skrip (`a.click()` beruntun) bisa terlihat "telat satu langkah" karena smooth scroll belum selesai; pakai klik sungguhan + tunggu beberapa detik sebelum menyimpulkan ada bug.
+- Screenshot di built-in browser kadang memakai frame lama setelah navigasi (gambar/wordmark seolah tidak ada). Paksa repaint (scroll 1px lalu kembali) atau cek `elementFromPoint` sebelum menganggapnya bug.
+- `document.querySelector('summary')` pertama di halaman adalah menu HP di header (juga `<details>`); targetkan FAQ dengan `#support details summary`.
 - Port 3000 mungkin masih dipakai dev server dari sesi lain. Matikan dulu atau pakai `npm run dev -- --port 3001`.
 
 ## Log
@@ -157,6 +160,8 @@ Entri terbaru di atas. Format: `tanggal · AI · phase · apa yang dikerjakan ·
 
 - 2026-11-25 · Gemini · Phase 8 · Commit seluruh pekerjaan Phase 0–8 secara terpisah per phase dan push ke `origin/main` (`UburUburJellyFish/website-demo`) · selesai
 
+- 2026-11-26 · Claude · Phase 8 · **Halaman `/support` selesai.** `content/support.ts` (email, catatan darurat, 10 FAQ dalam 4 topik dengan link TestFlight/Privacy, kartu kontak), `components/support/` (Emergency, Topic, FaqItem `<details>`, Contact), `ui/PageHero` (dipakai `/privacy` dan `/support`, `PrivacyHero` dihapus), `ui/EmailButton`, `lib/metadata.ts` `pageMetadata()` (gambar pratinjau + kartu besar untuk halaman selain Home), `site.supportLink` di footer, sitemap + `/support`. Diuji: 1280/375/320 tanpa scroll horizontal, `<details>` dengan klik dan keyboard (Enter buka, Tab ke link, Space tutup), footer link di semua halaman, Lighthouse `/support` 100/100/100/100 mobile+desktop, `/privacy` tetap 100. Catatan: screenshot built-in browser kadang menampilkan frame lama (gambar seolah hilang); cek dengan elementFromPoint/repaint sebelum menyimpulkan bug
+- 2026-11-26 · Claude · Phase 8 · Mulai halaman `/support` (Apple mewajibkan Support URL dengan kontak)
 - 2026-11-26 · Claude · Phase 8 · Email kontak Privacy Policy → `supportclaires@gmail.com` (permintaan Aaron), `lastUpdated` → November 26, 2026; docs 03/phase-8 + keputusan diperbarui. `PrivacyChapterNav`: geser bar ke chip aktif secara instan dalam 1,5 detik pertama (sebelumnya smooth, sehingga di HP chip bab 4 tidak terlihat saat membuka `/privacy#contact`), offset dihitung relatif ke daftar chip. Diuji 320×640: tombol email satu baris, `#contact` langsung menampilkan chip 4, scroll bab 1–4 chip aktif selalu terlihat. lint + tsc + build lolos
 - 2026-11-25 · Claude · Phase 8 · **Website live** (deploy oleh Aaron): https://claire-peach.vercel.app. Dicek: `/`, `/privacy`, `robots.txt`, `sitemap.xml`, OG image, bezel, QR = 200, 404 benar, Brotli aktif; klik sungguhan Story/Join the beta/Features/About tepat; `/privacy` 375×812 tanpa scroll horizontal; console bersih; Lighthouse live 100/100/100/100 untuk Home dan `/privacy` (mobile LCP 1,5 s / 1,0 s). `site.url` diisi → sitemap 2 URL, robots dengan Sitemap, tanpa peringatan `metadataBase`. Ketemu dan diperbaiki: `/privacy` kehilangan `og:image` dan `twitter:card summary_large_image` karena metadata halaman menimpa layout. README/docs diperbarui. Belum: commit/push, uji iPhone Safari
 - 2026-11-25 · Claude · Phase 8 · Maskot di pojok kiri atas scene meet dihapus (permintaan Aaron): keyframe 6 `star` sekarang y −6vh, scale 1.1, opacity [1, −1] (hilang di tengah keyframe), animasi `star` di keyframe meet keluar dihapus. Diuji: `#story` 1280×800 dan 375×812 tanpa bintang di pojok, sapaan tetap tampil, scan bezel bersih (tidak ada yang menimpa HP)

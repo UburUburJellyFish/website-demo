@@ -4,7 +4,8 @@ Website untuk aplikasi Claire: cerita parallax, semua fitur, About, dan halaman 
 untuk App Store. Hanya frontend: tidak ada database, API, cookie, analytics, atau penyimpanan data.
 Next.js 16 (App Router, static export), TypeScript, Tailwind CSS 4.
 
-**Live: https://claire-peach.vercel.app** (Privacy Policy: https://claire-peach.vercel.app/privacy)
+**Live: https://claire-peach.vercel.app** (Support: https://claire-peach.vercel.app/support · Privacy Policy:
+https://claire-peach.vercel.app/privacy)
 
 **Rencana lengkap dan phase kerja ada di [`docs/README.md`](docs/README.md). Status terakhir di
 [`PROGRESS.md`](PROGRESS.md).**
@@ -14,6 +15,7 @@ Next.js 16 (App Router, static export), TypeScript, Tailwind CSS 4.
 | URL | Isi |
 |---|---|
 | `/` | Cerita parallax, Everything in Claire, About |
+| `/support` | Support: email tim, FAQ, catatan darurat (Support URL di App Store Connect) |
 | `/privacy` | Privacy Policy app Claire (dipakai di App Store Connect) |
 
 ## Menjalankan
@@ -65,7 +67,7 @@ URL preview sendiri.
 |---|---|
 | Privacy Policy URL | `https://claire-peach.vercel.app/privacy` |
 | Marketing URL (opsional) | `https://claire-peach.vercel.app/` |
-| Support URL | Wajib di App Store Connect dan harus berisi cara menghubungi tim. Website belum punya halaman Support; bisa memakai `/privacy#contact` sementara, atau dibuat halaman `/support` |
+| Support URL | `https://claire-peach.vercel.app/support` (email `supportclaires@gmail.com`) |
 
 Isi halaman privacy berasal dari audit kode app (2026-11-25). Kalau app berubah (data baru, layanan baru),
 perbarui `src/content/privacy.ts` dan tanggal "Last updated", dan pastikan label App Privacy di App Store Connect

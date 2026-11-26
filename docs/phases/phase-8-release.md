@@ -15,6 +15,8 @@ Website online di hosting statis, dengan semua teks yang sudah dikonfirmasi.
       vertikal; balon di kiri dari 1280px, di atas kartu di bawahnya. QR WebP 900px.
 - [x] Halaman Privacy Policy `/privacy` untuk App Store (isi dari audit kode app, kontak `supportclaires@gmail.com`). Link di footer.
       Lihat `03-content.md`, "/privacy".
+- [x] Halaman Support `/support` (Support URL App Store): email `supportclaires@gmail.com` di hero, catatan darurat,
+      FAQ 4 topik (`<details>`), kartu kontak. Link di footer, masuk sitemap. Lighthouse 100 semua.
 - [x] Revisi: desain `/privacy` dirombak supaya tidak mirip website teman, dalam gaya Claire, memakai skill
       UI/UX Pro Max (dipasang di `~/.claude/skills/`): hero langit bintang + maskot, kartu clay warna deck, 4 bab dengan
       balon Claire, bar bab sticky + progres baca.

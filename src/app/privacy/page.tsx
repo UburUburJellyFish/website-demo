@@ -5,35 +5,17 @@ import { SiteHeader } from "@/components/layout/SiteHeader";
 import { PrivacyChapter } from "@/components/privacy/PrivacyChapter";
 import { PrivacyChapterNav } from "@/components/privacy/PrivacyChapterNav";
 import { PrivacyContact } from "@/components/privacy/PrivacyContact";
-import { PrivacyHero } from "@/components/privacy/PrivacyHero";
 import { PrivacyPromise } from "@/components/privacy/PrivacyPromise";
+import { PageHero } from "@/components/ui/PageHero";
 import { SkipLink } from "@/components/ui/SkipLink";
 import { privacy } from "@/content/privacy";
-import { site } from "@/content/site";
+import { pageMetadata } from "@/lib/metadata";
 
-// Next merges metadata shallowly: setting openGraph/twitter here replaces the layout's, image included. So the same
-// preview image (src/app/opengraph-image.png, 1200×630), type and large card are repeated here.
-const previewImage = { url: "/opengraph-image.png", width: 1200, height: 630, alt: site.ogImageAlt };
-
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: privacy.metaTitle,
   description: privacy.metaDescription,
-  openGraph: {
-    type: "website",
-    siteName: site.name,
-    locale: "en_US",
-    url: privacy.path,
-    title: privacy.metaTitle,
-    description: privacy.metaDescription,
-    images: [previewImage],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: privacy.metaTitle,
-    description: privacy.metaDescription,
-    images: [previewImage],
-  },
-};
+  path: privacy.path,
+});
 
 // /privacy: the app's privacy policy (the Privacy Policy URL in App Store Connect). A normal page, no parallax, but in
 // Claire's own look (designed with the UI/UX Pro Max skill: claymorphism, a story told in chapters with a progress
@@ -51,7 +33,13 @@ export default function PrivacyPage() {
       <SkipLink href="#policy">{privacy.skipLink}</SkipLink>
       <SiteHeader linkBase="/" />
       <main className="flex-1 pb-24">
-        <PrivacyHero />
+        <PageHero
+          backLabel={privacy.backLabel}
+          title={privacy.title}
+          intro={privacy.intro}
+          chips={privacy.chips}
+          bubble={privacy.heroBubble}
+        />
 
         <section aria-labelledby="short-version" className="mx-auto max-w-5xl px-4 md:px-6">
           <h2 id="short-version" className="type-label text-center text-navy">

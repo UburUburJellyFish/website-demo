@@ -4,7 +4,7 @@
 
 - **Hanya frontend.** `output: "export"` → HTML/CSS/JS statis di `out/`.
   Tidak ada database, API route, Server Action, cookie, form, login, atau analytics.
-- **Dua halaman**: `/` dan `/privacy` (Privacy Policy, phase 8), + halaman 404 bawaan.
+- **Tiga halaman**: `/`, `/support` dan `/privacy` (phase 8), + halaman 404 bawaan.
 - **Satu komponen per file**, nama file = nama komponen.
 - **Teks hanya di `src/content/`.** Komponen menerima teks dari sana.
 - **Warna hanya lewat token** di `src/app/globals.css` (lihat `01-design-system.md`).
@@ -39,7 +39,8 @@ claire-website/
       twitter-image.png          sama + .alt.txt
       robots.ts                  robots.txt (force-static)
       sitemap.ts                 sitemap.xml (kosong sampai site.url diisi)
-      privacy/page.tsx           /privacy: Privacy Policy (metadata sendiri, header/footer dengan linkBase "/")
+      privacy/page.tsx           /privacy: Privacy Policy (header/footer dengan linkBase "/")
+      support/page.tsx           /support: email tim, catatan darurat, FAQ, kartu kontak
       fonts/Astonpoliz.ttf
     content/
       site.ts                    nama, tagline, metadata, nav, footer
@@ -47,9 +48,11 @@ claire-website/
       features.ts                kartu Everything in Claire (4 grup)
       about.ts                   teks About, prinsip, tim
       privacy.ts                 teks Privacy Policy (dari audit kode app), kontak
+      support.ts                 teks Support: email, catatan darurat, FAQ per topik, kontak
       screens.ts                 daftar screenshot: file, alt, lebar, tinggi
       images.ts                  brand, maskot, perasaan, QR: file, alt, lebar, tinggi
     lib/
+      metadata.ts                pageMetadata(): metadata + gambar pratinjau untuk /privacy dan /support
       parallax/
         types.ts
         math.ts
@@ -91,9 +94,15 @@ claire-website/
         ConnectChip.tsx          chip di scene Connect
         SceneLabel.tsx           label huruf kapital berjarak
         FeelingRow.tsx           ikon perasaan kecil di kartu History
-        SkipLink.tsx             link "Skip to ..." pertama untuk keyboard (Home dan /privacy)
+        SkipLink.tsx             link "Skip to ..." pertama untuk keyboard (Home, /support, /privacy)
+        PageHero.tsx             hero /privacy dan /support: langit bintang, judul Astonpoliz, maskot + balon
+        EmailButton.tsx          tombol mailto (filled kuning / outline di kartu kuning)
+      support/
+        SupportEmergency.tsx     catatan "Claire can't help in an emergency" (garis range-low)
+        SupportTopic.tsx         satu topik FAQ (label + warna deck)
+        SupportFaqItem.tsx       satu pertanyaan, <details> clay (jalan tanpa JavaScript)
+        SupportContact.tsx       kartu kuning terakhir: yang perlu ditulis, email, tip TestFlight
       privacy/                   gaya Claire (claymorphism, dirancang dengan skill UI/UX Pro Max)
-        PrivacyHero.tsx          langit bintang (StarField), judul Astonpoliz, maskot + balon
         PrivacyPromise.tsx       satu dari 4 kartu clay "The short version" (warna deck, sedikit miring di lg)
         PrivacyChapterNav.tsx    client: bar bab sticky + bar progres baca (CSS scroll timeline)
         PrivacyChapter.tsx       satu bab: nomor clay, judul, balon Claire, kartu bagian

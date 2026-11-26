@@ -8,11 +8,12 @@ type SiteFooterProps = {
   linkBase?: string;
 };
 
-// Disclaimer, the same links as the header plus the privacy policy, copyright and the Apple trademark line, on
+// Disclaimer, the same links as the header plus support and the privacy policy, copyright and the Apple trademark line, on
 // home-tile. All text is home-ink: text-muted (home-ink 70%) is below 4.5:1 on home-tile for small text.
 export function SiteFooter({ linkBase = "" }: SiteFooterProps) {
   const links = [
     ...[...site.nav, site.cta].map((link) => ({ ...link, href: `${linkBase}${link.href}` })),
+    site.supportLink,
     site.privacyLink,
   ];
 

@@ -271,6 +271,24 @@ Isi berasal dari audit kode app (2026-11-25, repo app hanya dibaca):
 Perlu dicek tim sebelum submit: paket Gemini API yang dipakai (gratis atau berbayar menentukan bagaimana Google boleh
 memakai data, dan jawaban label **App Privacy** di App Store Connect), dan apakah app punya tombol hapus semua data.
 
+### `/support` · Support (phase 8)
+
+Halaman untuk **Support URL** di App Store Connect (Apple meminta kontak yang nyata). Teks lengkap di
+`src/content/support.ts`. Gaya sama dengan `/privacy` (hero bersama `PageHero`, kartu clay), urutan dari skill
+UI/UX Pro Max (pola FAQ/Documentation): hero dengan tombol **Email the team** (`supportclaires@gmail.com`) → catatan
+darurat ("Claire is a logbook, not a medical device, and it never picks your insulin dose…") → FAQ dalam 4 topik →
+kartu kuning "Still need help?" (detail yang perlu ditulis + tip Share Beta Feedback di TestFlight).
+
+| Topik | Pertanyaan |
+|---|---|
+| Getting started | How do I get Claire? (TestFlight, iOS 26+) · Does Claire tell me how much insulin to take? |
+| Logging | The voice log doesn’t understand me · Finding the ingredients of my meal didn’t work |
+| Connections and reminders | Glucometer (Profile › + di kartu glucometer) · Apple Health (Settings › Health › Data Access & Devices › Claire) · Reminders · Widget |
+| Your data | Delete my data · Privacy Policy |
+
+Jawaban dicek ke kode app (2026-11-26): nama app di iPhone = "Claire" (`CFBundleDisplayName`), tombol "Try Again" /
+"Save Without Nutrition" di sheet meal, jalur Health yang ditulis app sendiri.
+
 ## Perlu konfirmasi
 
 | Hal | Kenapa | Siapa |
@@ -280,7 +298,7 @@ memakai data, dan jawaban label **App Privacy** di App Store Connect), dan apaka
 | Video promo | Phase 7 selesai tanpa video. Mau dipasang di bawah About atau tidak (`05-assets.md`) | Aaron |
 | Kalimat privasi | Harus benar. App memakai penyimpanan lokal dan mengirim foto makanan ke Gemini. Halaman `/privacy` sudah ditulis dari audit kode (phase 8); kalimat pendek di About masih disembunyikan | Tim |
 | Paket Gemini API | Gratis atau berbayar: memengaruhi isi label App Privacy di App Store Connect | Tim |
-| Support URL | Wajib di App Store Connect; website belum punya halaman Support | Aaron |
+| Support URL | **Sudah:** `https://claire-peach.vercel.app/support` | Aaron |
 | Nama anggota tim | Untuk bagian About | Tim |
 | Menyebut "Accu-Chek Guide" | Boleh disebut sebagai contoh yang sudah dites, atau cukup "standard Bluetooth Glucose Profile" | Tim |
 | Easter egg dirahasiakan | Kartu "A little secret" sengaja tidak memberi tahu caranya | Aaron |
