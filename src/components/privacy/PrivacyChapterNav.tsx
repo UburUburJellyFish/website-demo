@@ -11,6 +11,12 @@ export function PrivacyChapterNav() {
   const { chapters, chapterNavLabel } = privacy;
   const [active, setActive] = useState<string>(chapters[0].id);
   const list = useRef<HTMLOListElement>(null);
+  // Moves right after the page opens happen at once (it may open deep down, e.g. /privacy#contact); later ones glide.
+  const openedAt = useRef(0);
+
+  useEffect(() => {
+    openedAt.current = performance.now();
+  }, []);
 
   useEffect(() => {
     const targets = chapters.map((chapter) => document.getElementById(chapter.id)).filter((el) => el !== null);
@@ -29,7 +35,8 @@ export function PrivacyChapterNav() {
     const chip = list.current?.querySelector<HTMLElement>(`[data-chapter="${active}"]`);
     const bar = list.current;
     if (!chip || !bar || bar.scrollWidth <= bar.clientWidth) return;
-    bar.scrollTo({ left: chip.offsetLeft - (bar.clientWidth - chip.offsetWidth) / 2, behavior: "smooth" });
+    const left = chip.offsetLeft - bar.offsetLeft - (bar.clientWidth - chip.offsetWidth) / 2;
+    bar.scrollTo({ left, behavior: performance.now() - openedAt.current < 1500 ? "instant" : "smooth" });
   }, [active]);
 
   return (

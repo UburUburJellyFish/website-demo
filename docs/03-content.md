@@ -266,7 +266,7 @@ Isi berasal dari audit kode app (2026-11-25, repo app hanya dibaca):
 | Notifikasi | lokal (`UNUserNotificationCenter`) | Bagian 7 |
 | Izin | kamera, mikrofon, speech, Health, Bluetooth (Info.plist), Photos lewat `PhotosPicker` | Bagian 8 |
 | Analytics/SDK | tidak ada (hanya framework Apple + REST Gemini) | Bagian 10 |
-| Kontak | email Aaron (dipilih Aaron) | Bagian 14 |
+| Kontak | `supportclaires@gmail.com` (email support tim, dari Aaron 2026-11-26) | Bagian 14 |
 
 Perlu dicek tim sebelum submit: paket Gemini API yang dipakai (gratis atau berbayar menentukan bagaimana Google boleh
 memakai data, dan jawaban label **App Privacy** di App Store Connect), dan apakah app punya tombol hapus semua data.

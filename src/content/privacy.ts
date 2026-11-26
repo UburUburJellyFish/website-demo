@@ -25,7 +25,7 @@ export type PrivacyChapter = {
 };
 
 // Written by hand (no `new Date()` in a Server Component, and the date is the policy's, not the build's).
-const lastUpdated = "November 25, 2026";
+const lastUpdated = "November 26, 2026";
 
 export const privacy = {
   path: "/privacy",
@@ -223,8 +223,8 @@ export const privacy = {
     id: "contact",
     title: "Contact us",
     text: "Questions about your privacy or this policy? Email us.",
-    // Shown publicly, chosen by Aaron (2026-11-25).
-    email: "aaron.soelistiono22@gmail.com",
+    // The team's support address, shown publicly (Aaron, 2026-11-26).
+    email: "supportclaires@gmail.com",
     team: "Claire is made by the UburUbur team at Apple Developer Academy @ UC Surabaya.",
   },
 } as const;

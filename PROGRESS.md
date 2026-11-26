@@ -19,12 +19,12 @@
 
 | | |
 |---|---|
-| **Tanggal update** | 2026-11-25 |
+| **Tanggal update** | 2026-11-26 |
 | **Diupdate oleh** | Claude (Opus 5.5) |
 | **Tahap** | **Phase 0–7 selesai. Website live** di https://claire-peach.vercel.app. Phase 8 tinggal cek di iPhone (Safari) |
 | **Sedang dikerjakan** | – (tidak ada) |
-| **Terakhir selesai** | Phase 8 · website di-deploy Aaron ke Vercel (https://claire-peach.vercel.app). `site.url` diisi (sitemap, robots, `metadataBase`), `/privacy` dapat gambar pratinjau dan kartu besar lagi. Lighthouse live 100/100/100/100 (Home dan `/privacy`, mobile dan desktop). **Perubahan ini belum di-commit/push** |
-| **Langkah berikutnya** | (1) Commit + push perubahan `site.url` dan metadata `/privacy` supaya Vercel men-deploy ulang. (2) Aaron membuka https://claire-peach.vercel.app di iPhone (Safari), cek scroll cerita dan address bar. (3) Isi Privacy Policy URL di App Store Connect: `https://claire-peach.vercel.app/privacy`. (4) Support URL masih belum ada (opsional: halaman `/support`) |
+| **Terakhir selesai** | Phase 8 · kontak Privacy Policy diganti ke `supportclaires@gmail.com` ("Last updated" jadi November 26, 2026); bar bab `/privacy` langsung menampilkan chip aktif saat halaman dibuka di tengah (mis. `#contact`). **Belum di-commit/push.** Sebelumnya (sudah di-push Aaron, `e98f9d4`): `site.url` live, `og:image` `/privacy` |
+| **Langkah berikutnya** | (1) Commit + push email support baru supaya Vercel men-deploy ulang. (2) Aaron membuka https://claire-peach.vercel.app di iPhone (Safari). (3) App Store Connect: Privacy Policy URL `https://claire-peach.vercel.app/privacy`, Support URL sementara `https://claire-peach.vercel.app/privacy#contact` (atau buat `/support`) |
 | **Build terakhir** | `npm run lint`, `tsc --noEmit`, `npm run build` lolos (2 halaman: `/`, `/privacy`; peringatan `metadataBase` sampai `site.url` diisi). Diuji di `scripts/test/gzip-server.mjs` port 4174 |
 
 ### Belum beres
@@ -45,7 +45,7 @@
 |---|---|
 | Branch | `main`, remote `origin` = `git@github.com:UburUburJellyFish/website-demo.git`. Aaron sudah commit + push sampai `7054f3d` (phase 0–8 + revisi) |
 | Commit terakhir | Phase 0–8 sudah di-commit terpisah dan di-push ke `origin/main` |
-| Belum di-commit | `site.url` live, metadata `/privacy` (gambar pratinjau), docs + PROGRESS phase 8 |
+| Belum di-commit | Email support baru + tanggal policy, perbaikan bar bab, docs + PROGRESS (commit terakhir di `origin/main`: `e98f9d4`) |
 
 ## Cara melanjutkan (untuk AI mana pun)
 
@@ -97,6 +97,7 @@ npm run dev
 | 2026-11-25 | Website hanya light mode (dark mode dihapus) | Aaron |
 | 2026-11-25 | Hosting: Vercel (Aaron sendiri yang login dan import repo `UburUburJellyFish/website-demo`) | Aaron |
 | 2026-11-25 | Kontak di Privacy Policy: email Aaron (ditampilkan publik) | Aaron |
+| 2026-11-26 | Kontak di Privacy Policy diganti ke email support tim `supportclaires@gmail.com` | Aaron |
 | 2026-11-25 | Belum commit/push di phase 8 (kemudian Aaron sendiri yang commit + push) | Aaron |
 | 2026-11-25 | URL live: https://claire-peach.vercel.app (project Vercel `claire`, akun Hobby Aaron) | Aaron |
 | 2026-11-25 | Bingkai HP = bezel iPhone resmi Apple, aturan "Apple Product Images" dipatuhi sebisanya (tanpa bayangan, miring, putar; tidak ada yang menimpa HP; HP tetap bergeser/memudar ikut scroll) | Aaron |
@@ -156,6 +157,7 @@ Entri terbaru di atas. Format: `tanggal · AI · phase · apa yang dikerjakan ·
 
 - 2026-11-25 · Gemini · Phase 8 · Commit seluruh pekerjaan Phase 0–8 secara terpisah per phase dan push ke `origin/main` (`UburUburJellyFish/website-demo`) · selesai
 
+- 2026-11-26 · Claude · Phase 8 · Email kontak Privacy Policy → `supportclaires@gmail.com` (permintaan Aaron), `lastUpdated` → November 26, 2026; docs 03/phase-8 + keputusan diperbarui. `PrivacyChapterNav`: geser bar ke chip aktif secara instan dalam 1,5 detik pertama (sebelumnya smooth, sehingga di HP chip bab 4 tidak terlihat saat membuka `/privacy#contact`), offset dihitung relatif ke daftar chip. Diuji 320×640: tombol email satu baris, `#contact` langsung menampilkan chip 4, scroll bab 1–4 chip aktif selalu terlihat. lint + tsc + build lolos
 - 2026-11-25 · Claude · Phase 8 · **Website live** (deploy oleh Aaron): https://claire-peach.vercel.app. Dicek: `/`, `/privacy`, `robots.txt`, `sitemap.xml`, OG image, bezel, QR = 200, 404 benar, Brotli aktif; klik sungguhan Story/Join the beta/Features/About tepat; `/privacy` 375×812 tanpa scroll horizontal; console bersih; Lighthouse live 100/100/100/100 untuk Home dan `/privacy` (mobile LCP 1,5 s / 1,0 s). `site.url` diisi → sitemap 2 URL, robots dengan Sitemap, tanpa peringatan `metadataBase`. Ketemu dan diperbaiki: `/privacy` kehilangan `og:image` dan `twitter:card summary_large_image` karena metadata halaman menimpa layout. README/docs diperbarui. Belum: commit/push, uji iPhone Safari
 - 2026-11-25 · Claude · Phase 8 · Maskot di pojok kiri atas scene meet dihapus (permintaan Aaron): keyframe 6 `star` sekarang y −6vh, scale 1.1, opacity [1, −1] (hilang di tengah keyframe), animasi `star` di keyframe meet keluar dihapus. Diuji: `#story` 1280×800 dan 375×812 tanpa bintang di pojok, sapaan tetap tampil, scan bezel bersih (tidak ada yang menimpa HP)
 - 2026-11-25 · Claude · Phase 8 · **Revisi tile Burden selesai.** `LogTileContent` = `{ kind, value, caption }`, 16 tile baru (`scenes.ts`), `ui/LogTile` ditulis ulang (ikon lucide, nilai 15px / 18px dari xl, keterangan 12px, rata kiri, `whitespace-nowrap`, tile meal `color-mix(card-meal 65%, voice-bottom)` + `on-dark`), ukuran tile naik di lg (5rem) dan xl (5.5rem), `text-pretty`/`text-balance` di teks Burden. Diuji: tidak ada tile meluber di 320/375/768/1024/1280/1920, grid tidak menabrak teks (1024: teks s/d 486px, grid dari 514px; 768: 349 / 383), Lighthouse Home mobile 96 / desktop 100, a11y 100, kontras 1

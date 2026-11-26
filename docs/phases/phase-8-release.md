@@ -13,7 +13,7 @@ Website online di hosting statis, dengan semua teks yang sudah dikonfirmasi.
 
 - [x] QR di CTA diperbesar: kartu mengikuti tinggi layar (sampai 30rem, 435px di 1280×800, dulu 256px), di tengah
       vertikal; balon di kiri dari 1280px, di atas kartu di bawahnya. QR WebP 900px.
-- [x] Halaman Privacy Policy `/privacy` untuk App Store (isi dari audit kode app, kontak email Aaron). Link di footer.
+- [x] Halaman Privacy Policy `/privacy` untuk App Store (isi dari audit kode app, kontak `supportclaires@gmail.com`). Link di footer.
       Lihat `03-content.md`, "/privacy".
 - [x] Revisi: desain `/privacy` dirombak supaya tidak mirip website teman, dalam gaya Claire, memakai skill
       UI/UX Pro Max (dipasang di `~/.claude/skills/`): hero langit bintang + maskot, kartu clay warna deck, 4 bab dengan
