@@ -4,18 +4,18 @@ type EmailButtonProps = {
   email: string;
   /** Visible label; the address is shown under it ("filled") or used as the label itself ("outline"). */
   label?: string;
-  /** "filled": yellow button for light backgrounds. "outline": voice-bottom outline for the yellow cards. */
+  /** "filled": yellow button for light backgrounds. "outline": voice-bottom outline for the light blue contact cards. */
   variant: "filled" | "outline";
   className?: string;
 };
 
-// A mailto button. Text is voice-bottom in both variants (the only text color that reads well on home-star yellow).
+// A mailto button. Text is voice-bottom in both variants (reads well on home-star yellow and home-accent blue).
 // Below 360px the icon makes room so the address stays on one line.
 export function EmailButton({ email, label, variant, className = "" }: EmailButtonProps) {
   const look =
     variant === "filled"
       ? "bg-home-star shadow-card hover:bg-highlight-chart focus-visible:outline-navy"
-      : "border-2 border-voice-bottom hover:bg-voice-bottom hover:text-home-star focus-visible:outline-voice-bottom";
+      : "border-2 border-voice-bottom hover:bg-voice-bottom hover:text-on-dark focus-visible:outline-voice-bottom";
 
   return (
     <a

@@ -59,7 +59,7 @@ Diambil dari kode app (`View/`, `Service/`, `QuickLogWidget/`) dan naskah video 
 | Elemen | Isi |
 |---|---|
 | `wordmark` | gambar `claire-wordmark.webp`, alt: "Claire, live beyond diabetes" |
-| `tagline` | A cheerful little logbook for type 1 diabetes. |
+| `tagline` | A smart journal designed for people with Type 1 diabetes that learns daily habits, turns them into actionable insights, and brings clarity to their glucose patterns. |
 | `scroll-hint` | Scroll to meet Claire ↓ |
 
 ### 2. `burden`
@@ -277,7 +277,7 @@ Halaman untuk **Support URL** di App Store Connect (Apple meminta kontak yang ny
 `src/content/support.ts`. Gaya sama dengan `/privacy` (hero bersama `PageHero`, kartu clay), urutan dari skill
 UI/UX Pro Max (pola FAQ/Documentation): hero dengan tombol **Email the team** (`supportclaires@gmail.com`) → catatan
 darurat ("Claire is a logbook, not a medical device, and it never picks your insulin dose…") → FAQ dalam 4 topik →
-kartu kuning "Still need help?" (detail yang perlu ditulis + tip Share Beta Feedback di TestFlight).
+kartu biru muda (`home-accent`, supaya bintang Claire tidak menyatu) "Still need help?" (detail yang perlu ditulis + tip Share Beta Feedback di TestFlight).
 
 | Topik | Pertanyaan |
 |---|---|

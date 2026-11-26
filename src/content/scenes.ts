@@ -11,7 +11,7 @@ export type LogTileContent = { kind: LogKind; value: string; caption: string };
 export const scenes = {
   intro: {
     wordmarkAlt: "Claire, live beyond diabetes",
-    tagline: "A cheerful little logbook for type 1 diabetes.",
+    tagline: "A smart journal designed for people with Type 1 diabetes that learns daily habits, turns them into actionable insights, and brings clarity to their glucose patterns.",
     scrollHint: "Scroll to meet Claire",
   },
 
