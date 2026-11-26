@@ -1,13 +1,12 @@
-import Image from "next/image";
 import { PrincipleCard } from "@/components/sections/PrincipleCard";
+import { StarPlayground } from "@/components/ui/StarPlayground";
 import { about } from "@/content/about";
-import { brand } from "@/content/images";
 
 // "About Claire" (#about): why Claire exists, three principles, the team. The member list and the privacy line only
 // show once they are filled in and confirmed in src/content/about.ts (docs/03-content.md, "Perlu konfirmasi").
-// The big star mascot is decoration: above the text on phones, beside it from md up.
+// The star mascot sits in a playable constellation (StarPlayground): above the text on phones, beside it from md up.
 export function AboutSection() {
-  const { id, title, paragraphs, principles, team, members, privacy } = about;
+  const { id, title, paragraphs, principles, team, members, privacy, playground } = about;
 
   return (
     <section id={id} aria-labelledby={`${id}-title`} className="scroll-mt-16 bg-home-background">
@@ -23,15 +22,10 @@ export function AboutSection() {
               </p>
             ))}
           </div>
-          <div className="order-first flex size-40 shrink-0 items-center justify-center self-center rounded-full bg-home-daily-log-card md:order-last md:size-72 lg:size-80">
-            <Image
-              src={brand.starMain.src}
-              alt=""
-              width={brand.starMain.width}
-              height={brand.starMain.height}
-              className="h-auto w-[88%]"
-            />
-          </div>
+          <StarPlayground
+            hint={playground.hint}
+            className="order-first h-60 w-full self-center sm:h-64 md:order-last md:size-72 md:shrink-0 lg:size-80"
+          />
         </div>
 
         <ul className="mt-14 grid gap-4 md:grid-cols-3">

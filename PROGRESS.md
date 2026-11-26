@@ -23,7 +23,7 @@
 | **Diupdate oleh** | Claude (Opus 5.5) |
 | **Tahap** | **Phase 0–7 selesai. Website live** di https://claire-peach.vercel.app. Phase 8 tinggal cek di iPhone (Safari) |
 | **Sedang dikerjakan** | – (tidak ada) |
-| **Terakhir selesai** | Phase 8 · halaman `/support` (email tim di hero, catatan darurat, FAQ 4 topik, kartu kontak), `PageHero` + `pageMetadata()` dipakai bersama `/privacy`, link Support di footer, sitemap 3 URL. Lighthouse `/support` 100 semua. **Belum di-commit/push** (email support baru sudah di-push Aaron di `0ea7dd0`) |
+| **Terakhir selesai** | **Bintang interaktif di About** (`ui/StarPlayground.tsx`, dipasang di `AboutSection`, teks `about.ts` → `playground.hint`, `.claude/launch.json` untuk preview). Referensi igloo.inc: ±1150 partikel kuning (`home-star`/`highlight-chart`) membentuk bintang 5 sudut, mesh tipis, berputar halus di 3D — canvas + 1 rAF, tanpa library. Menyebar dari kursor, meledak saat diketuk; reduced motion → bingkai diam; animasi hanya saat panel terlihat (IntersectionObserver) + berhenti saat tab tersembunyi. Maskot `claire-star-main` tidak lagi dipakai di About. Diuji 1280×860 + 375 (mobile band), console bersih, `npm run lint` + `npm run build` lolos. **Belum di-commit.** (Sebelumnya `/support` juga belum di-commit — lihat log.) |
 | **Langkah berikutnya** | (1) Commit + push supaya Vercel men-deploy `/support`. (2) App Store Connect: Support URL `https://claire-peach.vercel.app/support`, Privacy Policy URL `https://claire-peach.vercel.app/privacy`. (3) Aaron cek website di iPhone (Safari) |
 | **Build terakhir** | `npm run lint`, `tsc --noEmit`, `npm run build` lolos (2 halaman: `/`, `/privacy`; peringatan `metadataBase` sampai `site.url` diisi). Diuji di `scripts/test/gzip-server.mjs` port 4174 |
 
@@ -46,7 +46,7 @@
 |---|---|
 | Branch | `main`, remote `origin` = `git@github.com:UburUburJellyFish/website-demo.git`. Aaron sudah commit + push sampai `7054f3d` (phase 0–8 + revisi) |
 | Commit terakhir | Phase 0–8 sudah di-commit terpisah dan di-push ke `origin/main` |
-| Belum di-commit | `/support` + komponennya, `PageHero`/`pageMetadata`, link footer, sitemap, docs + PROGRESS (commit terakhir di `origin/main`: `0ea7dd0`) |
+| Belum di-commit | `/support` + komponennya, `PageHero`/`pageMetadata`, link footer, sitemap, docs + PROGRESS; **bintang About** (`ui/StarPlayground.tsx`, `AboutSection.tsx`, `content/about.ts`, `.claude/launch.json`). Commit terakhir di `origin/main`: `0ea7dd0` |
 
 ## Cara melanjutkan (untuk AI mana pun)
 
@@ -158,6 +158,7 @@ menyebut Accu-Chek Guide atau tidak, hosting dan domain.
 
 Entri terbaru di atas. Format: `tanggal · AI · phase · apa yang dikerjakan · hasil`.
 
+- 2026-11-26 · Claude · Tambahan · **Bintang interaktif di About (referensi igloo.inc).** `ui/StarPlayground.tsx` (client, canvas + 1 rAF, tanpa library): ±1150 partikel kuning dikemas dalam bintang 5 sudut (rejection sampling), sedikit ketebalan-z → terlihat 3D, goyang halus (bukan putar penuh) supaya bentuk bintang tetap terbaca, mesh tipis ke 2 tetangga terdekat, glow tengah. Interaksi: partikel menyebar menjauhi kursor (pegas balik) dan meledak saat diketuk; `prefers-reduced-motion` → satu bingkai diam tanpa input; loop hanya jalan saat panel terlihat (IntersectionObserver) dan tab aktif (visibilitychange). Warna dibaca dari token AppColor (`--home-star`, `--highlight-chart`) — tanpa hex di `.tsx`. `about.ts` + `playground.hint` ("Give the stars a nudge", pudar setelah ketukan pertama), dipasang di `AboutSection` menggantikan lingkaran maskot statis (maskot `claire-star-main` tidak lagi dipakai di About). `.claude/launch.json` (preview port 3100). Iterasi atas permintaan Aaron: bulat → bintang, lalu lebih banyak partikel + lebih bold. Diuji di dev 1280×860 (hover menyebar, tap meledak) dan 375 mobile band, console bersih, lint + build lolos. **Belum di-commit**
 - 2026-11-25 · Gemini · Phase 8 · Commit seluruh pekerjaan Phase 0–8 secara terpisah per phase dan push ke `origin/main` (`UburUburJellyFish/website-demo`) · selesai
 
 - 2026-11-26 · Claude · Phase 8 · **Halaman `/support` selesai.** `content/support.ts` (email, catatan darurat, 10 FAQ dalam 4 topik dengan link TestFlight/Privacy, kartu kontak), `components/support/` (Emergency, Topic, FaqItem `<details>`, Contact), `ui/PageHero` (dipakai `/privacy` dan `/support`, `PrivacyHero` dihapus), `ui/EmailButton`, `lib/metadata.ts` `pageMetadata()` (gambar pratinjau + kartu besar untuk halaman selain Home), `site.supportLink` di footer, sitemap + `/support`. Diuji: 1280/375/320 tanpa scroll horizontal, `<details>` dengan klik dan keyboard (Enter buka, Tab ke link, Space tutup), footer link di semua halaman, Lighthouse `/support` 100/100/100/100 mobile+desktop, `/privacy` tetap 100. Catatan: screenshot built-in browser kadang menampilkan frame lama (gambar seolah hilang); cek dengan elementFromPoint/repaint sebelum menyimpulkan bug
