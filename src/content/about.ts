@@ -3,6 +3,11 @@
 export const about = {
   id: "about",
   title: "About Claire",
+  // Interactive star playground beside the About text (components/ui/StarPlayground.tsx). Decorative and playable:
+  // the stars drift away from the cursor and scatter on a tap. A short, device-neutral hint.
+  playground: {
+    hint: "Give the stars a nudge",
+  },
   paragraphs: [
     "Claire started with conversations with people who live with type 1 diabetes and use insulin pens and a glucometer every day. Many told us logging felt like homework. So we built a logbook that is quick, friendly and on your side.",
     "Our mission is in our name tag: live beyond diabetes. Less time writing things down, more time living.",
