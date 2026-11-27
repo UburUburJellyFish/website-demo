@@ -24,7 +24,7 @@ export function AboutSection() {
           </div>
           <StarPlayground
             hint={playground.hint}
-            className="order-first h-60 w-full self-center sm:h-64 md:order-last md:size-72 md:shrink-0 lg:size-80"
+            className="order-first h-80 w-full self-center sm:h-96 md:order-last md:h-[26rem] md:w-80 md:shrink-0 lg:h-[30rem] lg:w-96"
           />
         </div>
 
