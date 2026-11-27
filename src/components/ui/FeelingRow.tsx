@@ -19,7 +19,7 @@ export function FeelingRow({ className = "" }: FeelingRowProps) {
           alt=""
           width={feeling.width}
           height={feeling.height}
-          className="size-9 rounded-full ring-2 ring-home-tile"
+          className="size-9 rounded-full ring-2 ring-home-card"
         />
       ))}
     </div>

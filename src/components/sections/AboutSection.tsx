@@ -1,6 +1,8 @@
+import Image from "next/image";
 import { PrincipleCard } from "@/components/sections/PrincipleCard";
 import { StarPlayground } from "@/components/ui/StarPlayground";
 import { about } from "@/content/about";
+import { brand } from "@/content/images";
 
 // "About Claire" (#about): why Claire exists, three principles, the team. The member list and the privacy line only
 // show once they are filled in and confirmed in src/content/about.ts (docs/03-content.md, "Perlu konfirmasi").
@@ -9,7 +11,7 @@ import { about } from "@/content/about";
 // to the left (only the text catches the pointer, the rest plays with the grains). On phones and tablets the text
 // comes first and the stage follows, edge to edge.
 export function AboutSection() {
-  const { id, title, paragraphs, principles, team, members, privacy, playground } = about;
+  const { id, title, paragraphs, principlesTitle, principles, team, members, privacy, playground } = about;
 
   return (
     <section id={id} aria-labelledby={`${id}-title`} className="scroll-mt-16 bg-home-background">
@@ -30,26 +32,37 @@ export function AboutSection() {
       </div>
 
       <div className="mx-auto w-full max-w-6xl px-4 pt-14 pb-20 md:px-6 md:pb-28">
-        <ul className="grid gap-4 md:grid-cols-3">
-          {principles.map((principle) => (
+        <h3 className="font-display text-[2rem] leading-tight text-navy md:text-[2.5rem]">{principlesTitle}</h3>
+        <ul className="mt-8 grid gap-4 lg:grid-cols-3 lg:gap-5">
+          {principles.map((principle, index) => (
             <li key={principle.title}>
-              <PrincipleCard {...principle} />
+              <PrincipleCard {...principle} index={index} />
             </li>
           ))}
         </ul>
 
-        <div className="type-body mt-12 flex flex-col gap-3">
-          <p>{team}</p>
-          {members.length > 0 && (
-            <ul className="flex flex-wrap gap-2">
-              {members.map((member) => (
-                <li key={member} className="rounded-full bg-home-accent px-4 py-1.5 font-medium">
-                  {member}
-                </li>
-              ))}
-            </ul>
-          )}
-          {privacy.confirmed && <p>{privacy.text}</p>}
+        {/* The team, next to Claire's star. */}
+        <div className="mt-10 flex flex-col gap-4 rounded-3xl border-3 border-home-card bg-home-accent p-6 text-voice-bottom shadow-clay sm:flex-row sm:items-center sm:gap-6 md:p-7">
+          <Image
+            src={brand.icon.src}
+            alt=""
+            width={brand.icon.width}
+            height={brand.icon.height}
+            className="size-16 shrink-0"
+          />
+          <div className="flex flex-col gap-3">
+            <p className="type-body-l font-medium text-pretty">{team}</p>
+            {members.length > 0 && (
+              <ul className="flex flex-wrap gap-2">
+                {members.map((member) => (
+                  <li key={member} className="type-small rounded-full bg-home-card px-4 py-1.5 font-medium">
+                    {member}
+                  </li>
+                ))}
+              </ul>
+            )}
+            {privacy.confirmed && <p className="type-small">{privacy.text}</p>}
+          </div>
         </div>
       </div>
     </section>

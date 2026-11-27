@@ -1,5 +1,7 @@
 // "Everything in Claire" cards, in four groups. Copy source: docs/03-content.md ("#features").
 
+import type { PrivacyColor } from "@/content/privacy";
+
 export type FeatureId =
   | "voice"
   | "meal"
@@ -23,9 +25,14 @@ export type FeatureId =
 // id picks the card's icon (and, for the Log cards, its deck color) in components/sections/FeatureCard.tsx.
 export type FeatureCardContent = { id: FeatureId; title: string; text: string };
 
+// color: the group's deck color (number badge, featured card, icon tiles). featured: the card shown wide, on that color.
+// Cards per group fill the two-column grid with no gap: featured + 4, or an even number without a featured card.
 export type FeatureGroupContent = {
   id: "log" | "every-day" | "look-back" | "connect";
   title: string;
+  text: string;
+  color: PrivacyColor;
+  featured?: FeatureId;
   cards: FeatureCardContent[];
 };
 
@@ -37,6 +44,9 @@ export const featureSection = {
     {
       id: "log",
       title: "Log",
+      text: "Tap, talk or take a photo. Each log takes seconds.",
+      color: "glucose",
+      featured: "voice",
       cards: [
         {
           id: "voice",
@@ -68,6 +78,9 @@ export const featureSection = {
     {
       id: "every-day",
       title: "Every day",
+      text: "Small nudges, right when they help.",
+      color: "star",
+      featured: "start-day",
       cards: [
         {
           id: "start-day",
@@ -95,6 +108,8 @@ export const featureSection = {
     {
       id: "look-back",
       title: "Look back",
+      text: "Your days and your patterns, at a glance.",
+      color: "insulin",
       cards: [
         {
           id: "history",
@@ -111,6 +126,8 @@ export const featureSection = {
     {
       id: "connect",
       title: "Connect",
+      text: "Claire works with what you already use.",
+      color: "activity",
       cards: [
         {
           id: "glucometer",

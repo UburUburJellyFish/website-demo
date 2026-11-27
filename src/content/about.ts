@@ -16,16 +16,24 @@ export const about = {
     "Claire started with conversations with people who live with type 1 diabetes and use insulin pens and a glucometer every day. Many told us logging felt like homework. So we built a logbook that is quick, friendly and on your side.",
     "Our mission is in our name tag: live beyond diabetes. Less time writing things down, more time living.",
   ],
+  principlesTitle: "What Claire stands for",
+  // icon: picked in components/sections/PrincipleCard.tsx. color: the icon tile's deck color.
   principles: [
     {
+      icon: "dose",
+      color: "insulin",
       title: "Your dose, your call",
       text: "Claire never picks your insulin dose. That stays between you and your doctor.",
     },
     {
+      icon: "logs",
+      color: "glucose",
       title: "Built on your own logs",
       text: "Tips and patterns come from your own days, not from a one-size-fits-all rule.",
     },
     {
+      icon: "friendly",
+      color: "star",
       title: "Friendly, not clinical",
       text: "A cheerful star, plain words and as few taps as possible.",
     },

@@ -161,7 +161,15 @@ Dinding HP: 3 kolom × 3 HP berisi `history.webp`, `summary.webp`, `home.webp`, 
 Judul: **Everything in Claire**
 Sub: Built for people who use insulin pens and a glucometer every day.
 
-Kartu dikelompokkan dalam 4 grup:
+Kartu dikelompokkan dalam 4 grup bernomor (01–04). Tiap grup punya satu kalimat penjelas, warna deck, dan (Log, Every
+day) satu kartu unggulan yang lebar:
+
+| Grup | Kalimat | Warna | Kartu unggulan |
+|---|---|---|---|
+| Log | Tap, talk or take a photo. Each log takes seconds. | `glucose` | Talk to log |
+| Every day | Small nudges, right when they help. | `star` | Let's start the day |
+| Look back | Your days and your patterns, at a glance. | `insulin` | – |
+| Connect | Claire works with what you already use. | `activity` | – |
 
 **Log**
 
@@ -215,7 +223,9 @@ friendly and on your side.
 petunjuk "Give the stars a nudge", nama bentuk dalam kurung sudut di bawah patung: Claire · Glucose · Insulin ·
 Meals, tombol panah "Previous shape" / "Next shape" (label untuk pembaca layar).
 
-**Tiga prinsip** (tiga kartu kecil):
+**Judul prinsip:** What Claire stands for
+
+**Tiga prinsip** (tiga kartu clay; ikon ShieldCheck / NotebookPen / Smile di tile `insulin` / `glucose` / `star`):
 
 | Judul | Teks |
 |---|---|
