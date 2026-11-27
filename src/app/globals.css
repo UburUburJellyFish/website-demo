@@ -63,6 +63,11 @@
   /* Web only, still from app colors */
   /* Text on the navy stage (voice-top / voice-bottom): homeCream. A separate token so its role stays clear. */
   --on-dark: #fffdf6;
+
+  /* Not AppColor: the two colors of the official Claire wordmark (public/images/brand/claire-wordmark.webp, sampled),
+     for the live-text wordmark on the intro (ui/AnimatedWordmark.tsx). Aaron asked for an exact match (2026-11-27). */
+  --wordmark: #39448e;
+  --wordmark-tagline: #7077b9;
   --frame-line: color-mix(in srgb, var(--navy) 20%, transparent);
   --shadow: color-mix(in srgb, var(--voice-bottom) 18%, transparent);
   --text-muted: var(--voice-muted);
@@ -116,6 +121,8 @@
   --color-voice-muted: var(--voice-muted);
   --color-frame-line: var(--frame-line);
   --color-on-dark: var(--on-dark);
+  --color-wordmark: var(--wordmark);
+  --color-wordmark-tagline: var(--wordmark-tagline);
   --color-text-muted: var(--text-muted);
 
   --shadow-card: 0 12px 32px var(--shadow);
@@ -265,6 +272,149 @@ html[data-rainbow] [data-stage-gradient] {
       animation-timeline: view();
       animation-range: entry 0% entry 80%;
     }
+  }
+}
+
+/*
+ * Intro wordmark (ui/AnimatedWordmark.tsx), CSS only so it plays before any JavaScript:
+ * 1. the letters of "Claire" rise one by one, from blurred and tilted to sharp, with a springy overshoot;
+ * 2. the star (the dot of the i) drops in spinning, squashes as it lands and throws off a few sparks;
+ * 3. "Live beyond diabetes" follows word by word;
+ * 4. afterwards a soft wave runs through the letters now and then, the star twinkles, and a letter hops when hovered.
+ * Reduced motion: none of this, the wordmark is simply there. Sparks are hidden unless they play.
+ */
+.wordmark-letter,
+.wordmark-glyph,
+.wordmark-word {
+  display: inline-block;
+}
+
+.wordmark-spark {
+  opacity: 0;
+}
+
+@keyframes wordmark-rise {
+  0% {
+    opacity: 0;
+    transform: translateY(0.45em) rotate(-8deg) scale(0.6);
+    filter: blur(10px);
+  }
+  60% {
+    opacity: 1;
+    filter: blur(0);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
+@keyframes wordmark-wave {
+  0%,
+  14%,
+  100% {
+    transform: none;
+  }
+  7% {
+    transform: translateY(-0.06em);
+  }
+}
+
+@keyframes wordmark-hop {
+  0%,
+  100% {
+    transform: none;
+  }
+  35% {
+    transform: translateY(-0.14em) rotate(-5deg);
+  }
+  65% {
+    transform: translateY(0.02em) rotate(2deg);
+  }
+}
+
+@keyframes wordmark-star-drop {
+  0% {
+    opacity: 0;
+    transform: translateY(-9em) rotate(-260deg) scale(0.5);
+  }
+  55% {
+    opacity: 1;
+    transform: translateY(0.3em) rotate(8deg) scale(1.3, 0.72);
+  }
+  72% {
+    transform: translateY(-0.25em) rotate(-4deg) scale(0.9, 1.1);
+  }
+  86% {
+    transform: translateY(0.05em) scale(1.04, 0.96);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes wordmark-twinkle {
+  0%,
+  100% {
+    transform: none;
+  }
+  50% {
+    transform: scale(1.18) rotate(16deg);
+  }
+}
+
+@keyframes wordmark-spark {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) scale(0.3);
+  }
+  25% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--dx), var(--dy)) scale(1) rotate(120deg);
+  }
+}
+
+@keyframes wordmark-word {
+  0% {
+    opacity: 0;
+    transform: translateY(0.5em);
+    filter: blur(4px);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .wordmark-letter {
+    animation:
+      wordmark-rise 0.95s cubic-bezier(0.2, 0.9, 0.25, 1.15) both,
+      wordmark-wave 7s ease-in-out infinite;
+    animation-delay:
+      calc(0.15s + var(--i) * 0.075s),
+      calc(3.2s + var(--i) * 0.11s);
+  }
+  .wordmark-letter:hover .wordmark-glyph {
+    animation: wordmark-hop 0.55s ease-out;
+  }
+  .wordmark-star {
+    animation:
+      wordmark-star-drop 0.9s cubic-bezier(0.3, 0.7, 0.4, 1) 0.75s both,
+      wordmark-twinkle 3.2s ease-in-out 2.4s infinite;
+  }
+  .wordmark-spark {
+    animation: wordmark-spark 0.9s ease-out 1.25s both;
+  }
+  .wordmark-word {
+    animation: wordmark-word 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+    animation-delay: calc(1.25s + var(--i) * 0.09s);
   }
 }
 
