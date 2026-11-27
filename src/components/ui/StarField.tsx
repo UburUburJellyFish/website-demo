@@ -1,3 +1,5 @@
+import { seeded } from "@/lib/seeded";
+
 type Layer = "far" | "mid" | "near";
 
 type StarFieldProps = { layer: Layer };
@@ -10,17 +12,8 @@ const LAYERS: Record<Layer, { count: number; size: [number, number]; opacity: nu
   near: { count: 8, size: [1, 1.5], opacity: 0.7, seed: 41 },
 };
 
-/** Same numbers on the server and in the browser, so positions never jump at hydration. */
-function seeded(seed: number) {
-  let state = seed;
-  return () => {
-    state = (state * 1664525 + 1013904223) % 4294967296;
-    return state / 4294967296;
-  };
-}
-
-// Star points for a 24×24 box.
-const STAR = "12,1.5 14.9,8.6 22.5,9.2 16.7,14.1 18.5,21.6 12,17.6 5.5,21.6 7.3,14.1 1.5,9.2 9.1,8.6";
+// Star points for a 24×24 box (also used by PageTransition).
+export const STAR = "12,1.5 14.9,8.6 22.5,9.2 16.7,14.1 18.5,21.6 12,17.6 5.5,21.6 7.3,14.1 1.5,9.2 9.1,8.6";
 
 // One layer of small decorative stars in AppColor yellows. Taller than the screen so it can move up without a gap.
 export function StarField({ layer }: StarFieldProps) {

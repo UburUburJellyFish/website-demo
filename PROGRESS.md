@@ -19,13 +19,13 @@
 
 | | |
 |---|---|
-| **Tanggal update** | 2026-11-26 |
+| **Tanggal update** | 2026-11-27 |
 | **Diupdate oleh** | Claude (Opus 5.5) |
 | **Tahap** | **Phase 0–7 selesai. Website live** di https://claire-peach.vercel.app. Phase 8 tinggal cek di iPhone (Safari) |
 | **Sedang dikerjakan** | – (tidak ada) |
-| **Terakhir selesai** | Phase 8 · halaman `/support` (email tim di hero, catatan darurat, FAQ 4 topik, kartu kontak), `PageHero` + `pageMetadata()` dipakai bersama `/privacy`, link Support di footer, sitemap 3 URL. Lighthouse `/support` 100 semua. **Belum di-commit/push** (email support baru sudah di-push Aaron di `0ea7dd0`) |
-| **Langkah berikutnya** | (1) Commit + push supaya Vercel men-deploy `/support`. (2) App Store Connect App Information: Aaron isi Content Rights lalu klik Save di halaman (Subtitle + Category belum tersimpan); sisanya Build, App Privacy publish, Pricing and Availability. (3) Aaron cek website di iPhone (Safari) |
-| **Build terakhir** | `npm run lint`, `tsc --noEmit`, `npm run build` lolos (2 halaman: `/`, `/privacy`; peringatan `metadataBase` sampai `site.url` diisi). Diuji di `scripts/test/gzip-server.mjs` port 4174 |
+| **Terakhir selesai** | Revisi Aaron (2026-11-27): transisi antarhalaman `PageTransition` (lapisan kuning → lilac → langit malam berbintang + Claire jatuh menutup layar, halaman berganti di baliknya, lalu terbuka ke bawah). **Belum di-commit/push** (kartu kontak biru muda + kalimat intro sudah di-commit Aaron di `f3c6014`; `main` lokal tertinggal 2 commit dari `origin/main`, pull dulu sebelum commit) |
+| **Langkah berikutnya** | (1) Aaron coba transisi di browser sendiri (Home ↔ Support ↔ Privacy), lalu commit + push. (2) Aaron cek website di iPhone (Safari) |
+| **Build terakhir** | 2026-11-27: `npm run lint`, `tsc --noEmit`, `npm run build` lolos (`/`, `/support`, `/privacy`). Diuji di `scripts/test/gzip-server.mjs` port 4174 |
 
 ### Belum beres
 
@@ -110,6 +110,7 @@ menyebut Accu-Chek Guide atau tidak, hosting dan domain.
 
 ## Jebakan yang sudah diketahui
 
+- Transisi halaman: jangan pakai `requestAnimationFrame` untuk menunggu halaman baru. Tidak pernah jalan saat tab hidden (pane browser bawaan juga melapor hidden), jadi layar tertutup selamanya. Pakai `setTimeout`. Untuk screenshot frame transisi: bekukan animasi (`getAnimations()`, `pause()`, `currentTime` sedikit sebelum `endTime`) lalu paksa repaint; kalau dibekukan > 6 detik, fallback memuat halaman tujuan secara penuh.
 - `cacheComponents: true` + `output: "export"` → build gagal "PPR cannot be enabled in export mode".
 - `new Date()` di Server Component → build gagal saat prerender. Tahun ditulis di `src/content/site.ts`.
 - `sips` di Mac tidak bisa menulis WebP, ffmpeg di Mac ini tidak punya encoder WebP → pakai `sharp` (phase 1).
@@ -160,6 +161,7 @@ Entri terbaru di atas. Format: `tanggal · AI · phase · apa yang dikerjakan ·
 
 - 2026-11-25 · Gemini · Phase 8 · Commit seluruh pekerjaan Phase 0–8 secara terpisah per phase dan push ke `origin/main` (`UburUburJellyFish/website-demo`) · selesai
 
+- 2026-11-27 · Claude · Phase 8 · Revisi Aaron (contoh: sweet-tape.com, dipakai untuk ide saja): **transisi antarhalaman**. `components/layout/PageTransition.tsx` (baru, dipasang di `app/layout.tsx`): satu click listener di window (capture) mengambil alih link ke halaman lain di situs ini (header, footer, logo, "Back to home"); link `#bagian` di halaman yang sama, situs lain, mailto, tab baru dan reduced motion dibiarkan. Tiga lapisan (`home-star`, `card-insulin`, langit `voice-top`→`voice-bottom`) dengan 34 bintang dan Claire jatuh dari atas, tepi melengkung 15vh, `router.push` begitu lapisan pertama menutup layar, lalu lapisan jatuh lagi ke bawah setelah halaman baru siap. Overlay hanya ada selama transisi (tidak memengaruhi load). Fallback 6 detik: muat halaman tujuan secara penuh. `lib/seeded.ts` (baru, dipakai StarField dan transisi), `StarField` mengekspor `STAR`. Akibat sampingan: link header/footer antarhalaman sekarang navigasi klien (dulu muat ulang penuh). Diuji di 4174: Home→Privacy, Privacy→`/#features` (berhenti di Features), Home→Support, Support→Home (logo), Support→`/#beta` (scene CTA aktif), semua tanpa muat ulang; reduced motion → tanpa transisi; 375px tanpa scroll horizontal; frame tertutup dicek (desktop + HP). Lint, tsc, build lolos. **Belum di-commit/push**
 - 2026-11-26 · Claude · Phase 8 · Revisi Aaron: kalimat pembuka di intro (`scenes.intro.tagline`) diganti dari "A cheerful little logbook for type 1 diabetes." ke kalimat Aaron "A smart journal designed for people with Type 1 diabetes that learns daily habits, turns them into actionable insights, and brings clarity to their glucose patterns." Meta description, alt gambar pratinjau dan About masih memakai "cheerful" (tidak diminta). Build lolos; dicek 1280 (3 baris) dan 375 (4 baris, tanpa scroll horizontal). **Belum di-commit/push**
 - 2026-11-26 · Claude · Phase 8 · Revisi Aaron: kartu kontak paling bawah di `/support` (`SupportContact`) dan `/privacy` (`PrivacyContact`) diganti dari kuning `home-star` ke biru muda `home-accent` (teks voice-bottom ≈ 10:1), supaya bintang Claire yang kuning tidak menyatu. Bullet bintang di kartu support jadi kuning, hover tombol email jadi teks on-dark. Lint + build lolos, dicek di 4174 (dua kartu). **Belum di-commit/push**
 - 2026-11-26 · Claude · Phase 8 · App Store Connect **App Compliance**: Regulated Medical Device dideklarasikan **No** (atas OK Aaron; Claire hanya logbook, tidak mendiagnosis, tidak memilih dosis). Sisa wajib sebelum Add for Review: Build, screenshot iPad 13" (0/10; atau jadikan app iPhone saja), Content Rights. App Privacy sudah di-publish Aaron, screenshot iPhone 5 buah

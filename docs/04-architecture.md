@@ -66,6 +66,7 @@ claire-website/
         SiteHeader.tsx
         HeaderNav.tsx            client: link header + menu HP (<details>); linkBase "/" di halaman selain Home
         SiteFooter.tsx
+        PageTransition.tsx       client: transisi antarhalaman (lapisan + langit berbintang + Claire jatuh), dipasang di layout
       parallax/
         ParallaxStage.tsx
         ParallaxScene.tsx

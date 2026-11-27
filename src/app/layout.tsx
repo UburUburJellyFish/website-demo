@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Geist } from "next/font/google";
 import localFont from "next/font/local";
+import { PageTransition } from "@/components/layout/PageTransition";
 import { site } from "@/content/site";
 import "./globals.css";
 
@@ -62,7 +63,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             Next queues it at the end of <body>, so the stacked page flashed before the stage turned on. */}
         <script id="px-on" dangerouslySetInnerHTML={{ __html: PX_ON_SCRIPT }} />
       </head>
-      <body className="flex min-h-full flex-col font-sans">{children}</body>
+      <body className="flex min-h-full flex-col font-sans">
+        {children}
+        {/* Stars falling over the screen when the visitor goes to another page (/, /support, /privacy). */}
+        <PageTransition />
+      </body>
     </html>
   );
 }
