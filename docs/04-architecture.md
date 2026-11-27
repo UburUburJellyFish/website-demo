@@ -53,6 +53,11 @@ claire-website/
       images.ts                  brand, maskot, perasaan, QR: file, alt, lebar, tinggi
     lib/
       metadata.ts                pageMetadata(): metadata + gambar pratinjau untuk /privacy dan /support
+      seeded.ts                  angka acak dengan seed (bintang, transisi, patung partikel)
+      particles/
+        shapes.ts                titik + normal + warna untuk 4 patung (Claire, tetes, pen, mangkuk)
+        shaders.ts               GLSL: butiran ber-shading (bola kecil), warna/normal saat morph, debu mengecil
+        simulation.ts            fisika butiran di CPU: pegas ke bentuk, lemparan kursor, debu melayang, ketukan
       parallax/
         types.ts
         math.ts
@@ -115,7 +120,7 @@ claire-website/
         FeatureSection.tsx
         FeatureGroup.tsx
         FeatureCard.tsx
-        AboutSection.tsx
+        AboutSection.tsx         panggung penuh StarPlayground (ui/, three.js dimuat saat terlihat) + teks di kiri, lalu prinsip
         PrincipleCard.tsx
       easter-egg/
         RainbowStar.tsx          ketuk bintang header 8 kali (jeda ≤ 2 s) → latar pelangi, 8 lagi → normal

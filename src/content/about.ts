@@ -3,10 +3,14 @@
 export const about = {
   id: "about",
   title: "About Claire",
-  // Interactive star playground beside the About text (components/ui/StarPlayground.tsx). Decorative and playable:
-  // the stars drift away from the cursor and scatter on a tap. A short, device-neutral hint.
+  // Particle sculptures beside the About text (components/ui/StarPlayground.tsx), after igloo.inc: grains push away
+  // from the pointer and scatter on a tap; the arrows turn Claire into the other shapes. The hint is device-neutral.
+  // shapes: one name per sculpture, in this order (src/lib/particles/shapes.ts).
   playground: {
     hint: "Give the stars a nudge",
+    shapes: ["Claire", "Glucose", "Insulin", "Meals"],
+    previousLabel: "Previous shape",
+    nextLabel: "Next shape",
   },
   paragraphs: [
     "Claire started with conversations with people who live with type 1 diabetes and use insulin pens and a glucometer every day. Many told us logging felt like homework. So we built a logbook that is quick, friendly and on your side.",

@@ -211,6 +211,10 @@ friendly and on your side.
 
 **Paragraf 2:** Our mission is in our name tag: live beyond diabetes. Less time writing things down, more time living.
 
+**Panggung patung partikel** (selebar layar; dari lg setinggi layar dengan judul dan teks di kiri di atas panggung, di HP/tablet teks dulu lalu panggung; `StarPlayground`, teks di `about.ts` → `playground`):
+petunjuk "Give the stars a nudge", nama bentuk dalam kurung sudut di bawah patung: Claire · Glucose · Insulin ·
+Meals, tombol panah "Previous shape" / "Next shape" (label untuk pembaca layar).
+
 **Tiga prinsip** (tiga kartu kecil):
 
 | Judul | Teks |
